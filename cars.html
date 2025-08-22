@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brotherstravel – Car List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="siteHeader" class="nav">
+    <div class="logo">
+      <a href="index.html" style="display:inline-flex; align-items:center; text-decoration:none; color:inherit;">
+        <img src="Logo_white.png" alt="Brotherstravel logo" style="height:80px; width:auto; vertical-align:middle; margin-right:8px;">
+        Brotherstravel.tour
+      </a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cars.html" class="active">Car List</a>
+      <a href="selfdrive.html">Self Drive</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1>Our Fleet – Reliable, Sanitized Cars for Your Journey</h1>
+      <p>Choose from our well-maintained, comfortable vehicles. Safety and cleanliness guaranteed for every trip.</p>
+    </section>
+
+    <section class="section-pad">
+      <div class="card-grid">
+        <article class="card">
+          <img src="innova-crysta-exterior-right-front-three-quarter-2.avif" alt="Toyota Innova Crysta parked at an angle showing the right front side, clean and polished exterior, set in a bright outdoor environment, conveying reliability and comfort" />
+          <h3>Toyota Innova</h3>
+          <p>6-seater | AC<br />Perfect for family/group tours</p>
+          <span class="muted">✔ Sanitized After Every Trip · ✔ Experienced Drivers</span>
+          <div class="card-cta">
+            <a href="https://wa.me/919365961218?text=I+want+to+book+Toyota+Innova" class="btn">Book Now</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="Dzire - Arctic White Pearl.webp" alt="Swift Dzire" />
+          <h3>Swift Dzire</h3>
+          <p>4-seater | AC<br />Best for couples & small families</p>
+          <span class="muted">✔ Affordable Rates · ✔ Local Expertise</span>
+          <div class="card-cta">
+            <a href="https://wa.me/919365961218?text=I+want+to+book+Swift+Dzire" class="btn">Book Now</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="force-traveller-26-seater.jpg" alt="Tempo Traveller" />
+          <h3>Tempo Traveller</h3>
+          <p>12/17/26-seater | AC<br />Perfect for group travel</p>
+          <span class="muted">✔ Spacious & Comfortable · ✔ Sanitized Vehicles</span>
+          <div class="card-cta">
+            <a href="https://wa.me/919365961218?text=I+want+to+book+Force+Traveller" class="btn">Book Now</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="front-left-side-47.avif" alt="Force Urbania" />
+          <h3>Force Urbania</h3>
+          <p>10/12/17-seater | AC<br />Perfect for group travel</p>
+          <span class="muted">✔ Spacious & Comfortable · ✔ Sanitized Vehicles</span>
+          <div class="card-cta">
+            <a href="https://wa.me/919365961218?text=I+want+to+book+Force+Urbania" class="btn">Book Now</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="why-choose section-pad">
+    <h2 class="section-title">Why Choose Brotherstravel?</h2>
+    <ul class="bullet">
+      <li>In-house fleet: No brokers, direct booking</li>
+      <li>Sanitized cars, vaccinated drivers</li>
+      <li>24/7 support for emergencies</li>
+      <li>Flexible itinerary and competitive pricing</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Brotherstravel | Developed by You</p>
+  </footer>
+
+  <script>
+    (function () {
+      const header = document.getElementById('siteHeader');
+      const onScroll = () => {
+        if (window.scrollY > 10) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+</body>
+</html>

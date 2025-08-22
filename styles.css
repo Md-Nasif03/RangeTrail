@@ -1,0 +1,367 @@
+/* =========================
+   THEME VARIABLES
+   ========================= */
+:root {
+  --primary-green: #236a3b;
+  --secondary-gold: #fac564;
+  --accent-blue: #84a9c0;
+  --bg-light: #f5fafb;
+  --text-dark: #222a2c;
+  --text-light: #f8f8f4;
+
+  /* header behavior */
+  --nav-solid: var(--primary-green);
+  --nav-transparent: rgba(33, 42, 44, 0); /* fully transparent */
+  --nav-height: 56px;
+  --nav-height-scrolled: 52px;
+}
+
+/* =========================
+   BASE RESET
+   ========================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.5;
+  padding-top: var(--nav-height); /* ensures content not under fixed nav */
+}
+
+/* =========================
+   HEADER / NAVBAR
+   ========================= */
+#siteHeader.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 20px;
+  background: var(--nav-solid);        /* starts solid green */
+  color: #fff;
+  transition: background .35s ease, height .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+}
+#siteHeader.scrolled {
+  background: rgba(33, 42, 44, 0.76);  /* becomes transparent on scroll */
+  height: var(--nav-height-scrolled);
+  /* backdrop-filter: blur(6px); */
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .5px;
+  font-style: italic;
+}
+
+#siteHeader nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 18px;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+#siteHeader nav a:hover, #siteHeader nav a.active {
+  color: var(--secondary-gold);
+  border-color: var(--secondary-gold);
+}
+
+/* =========================
+  HERO (HOME)
+   ========================= */
+.hero-image {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  background: url('Web page.png') center center / cover no-repeat fixed; /* parallax/frozen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.hero-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(33, 42, 44, 0.76);
+  color: var(--text-light);
+  padding: 28px 16px;
+  border-radius: 13px;
+  box-shadow: 0 2px 18px #222a2c80;
+}
+.hero-text h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-weight: 800;
+  color: var(--secondary-gold);
+  font-style: italic;
+  text-shadow: 0 2px 14px #222a2c;
+}
+.hero-text p { font-size: 1.1rem; }
+
+/* =========================
+  SECTIONS / CARDS / BUTTONS
+   ========================= */
+.section-pad { padding: 36px 20px; }
+.section-title {
+  text-align: center;
+  color: var(--primary-green);
+  margin-bottom: 18px;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.card-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.07);
+  width: 280px;
+  padding: 18px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.price {
+  color: var(--primary-green);
+  font-weight: 800;
+}
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
+  background: var(--primary-green);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background .2s, color .2s;
+}
+.btn:hover { background: var(--secondary-gold); color: var(--text-dark); }
+
+.bullet { list-style: disc; max-width: 720px; margin: 0 auto; padding-left: 20px; }
+
+/* =========================
+  PAGE HERO (CARS/SELDDRIVE)
+   ========================= */
+.page-hero {
+  background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
+  color: #0d4021;
+  border-radius: 12px;
+  text-align: center;
+  padding: 28px 16px;
+  margin: 24px 20px 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+
+/* =========================
+  WHY CHOOSE (shared)
+   ========================= */
+.why-choose {
+  background: #e9f7ff;
+  border-radius: 8px;
+  padding: 20px 15px;
+  max-width: 800px;
+  margin: 18px auto 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.why-choose .section-title { color: #0c6a97; }
+
+/* =========================
+  FOOTER
+   ========================= */
+footer {
+  text-align: center;
+  background: #1f2a23;
+  color: #e8efe9;
+  padding: 18px 0 12px;
+  margin-top: 40px;
+}
+
+/* =========================
+  Home page intro/about section
+   ========================= */
+.intro {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  max-width: 1100px;
+  margin: 0 auto 24px;
+}
+.intro .section-title {
+  margin-bottom: 12px;
+}
+.lead {
+  font-size: 1.08rem;
+  color: #2a2f31;
+  margin-bottom: 12px;
+}
+.intro p {
+  margin-bottom: 10px;
+  color: #324247;
+}
+.intro-highlights {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  justify-content: center;   /* centers items horizontally */
+  align-items: center;       /* centers items vertically on each line */
+}
+.intro-chip {
+  background: linear-gradient(135deg, #e9f5ec 0%, #dff0e6 100%);
+  color: #1f5b35;
+  border: 1px solid #cae5d2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+/* =========================
+  PACKAGES SECTION
+   ========================= */
+.packages-slider{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  padding:6px 6px 18px;
+  scroll-snap-type:x mandatory;
+  scroll-behavior: smooth;
+}
+.packages-slider::-webkit-scrollbar{ height:8px }
+.packages-slider::-webkit-scrollbar-thumb{
+  background:#cfd8dc; border-radius:8px;
+}
+
+/* Large card style (4 visible on desktop approx) */
+.pkg-card{
+  flex:0 0 clamp(260px, 23%, 340px);
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 8px 28px rgba(0,0,0,.08);
+  text-decoration:none;
+  color:inherit;
+  overflow:hidden;
+  scroll-snap-align:start;
+  transition:transform .15s ease, box-shadow .15s ease;
+  border:1px solid #e7edf1;
+  display:flex;                 /* NEW: make the whole card a column */
+  flex-direction:column;
+}
+
+.pkg-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 36px rgba(0,0,0,.12);
+}
+
+.pkg-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  display:block;
+}
+
+.pkg-body{
+  padding:14px 14px 16px;
+  /* text-align:center; */
+  display:flex;                 /* NEW */
+  flex-direction:column;        /* NEW */
+  height:100%;    
+}
+
+.pkg-title{
+  font-size:1.1rem;
+  font-weight:800;
+  margin:6px 0 6px;
+  color:#1f2d24;
+  text-align:center;            /* optional, keep if you want centered titles */
+}
+
+.pkg-tag{
+  color:#455a64;
+  font-size:.98rem;
+  line-height:1.45;
+  min-height:44px;
+  margin-bottom:10px;
+  text-align:center;            /* center the tagline */
+}
+
+.pkg-info{
+  display:flex;
+  justify-content:center;       /* CENTER the duration */
+  align-items:center;
+  gap:14px;
+  margin-bottom:10px;
+  color:var(--primary-green);
+  font-weight:700;
+  text-align:center;
+}
+.pkg-duration{ 
+  color: (--primary-green); 
+  font-weight:700;
+  text-align:center;  
+} 
+
+/* Keep theme button color (uses your .btn base) */
+.btn.btn-ghost{
+  width:100%;
+  background:transparent;
+  color:var(--primary-green);
+  border:2px solid var(--primary-green);
+  border-radius:8px;
+  padding:10px 14px;
+  font-weight:800;
+  margin-top:0;                 /* ensure no extra gap is added above */
+}
+.pkg-spacer{                     /* NEW */
+  flex:1 1 auto;
+}
+.btn.btn-ghost:hover{
+  background:var(--primary-green);
+  color:#fff;
+}
+.pkg-card{ min-height:450px; }
+
+/* Responsive: show larger cards on small screens (2–3 per view via scroll) */
+@media (max-width:1200px){
+  .pkg-card{ flex-basis:28% }
+}
+@media (max-width:900px){
+  .pkg-card{ flex-basis:42% }  /* ~2 per view */
+}
+@media (max-width:560px){
+  .pkg-card{ flex-basis:82% }  /* 1 large card per view, swipe to slide */
+}
+
+
+
+/* =========================
+  RESPONSIVE
+   ========================= */
+@media (max-width: 900px) {
+  body { padding-top: 54px; }
+  #siteHeader.nav { height: 54px; padding: 0 14px; }
+  #siteHeader.scrolled { height: 50px; }
+  .hero-text h1 { font-size: 1.6rem; }
+  .section-title { font-size: 1.5rem; }
+}
