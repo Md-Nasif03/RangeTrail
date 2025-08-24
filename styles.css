@@ -213,6 +213,20 @@ body {
   justify-content: center;
   margin-bottom: 32px;
 }
+.hero-image {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  background: url('Web page.png') center center / cover no-repeat;
+  /* removed "fixed" */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  min-height: 100dvh;
+}
+
+
 .hero-text {
   position: absolute;
   top: 50%; left: 50%;
