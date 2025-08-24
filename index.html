@@ -313,11 +313,11 @@
   <!-- Menu + scroll scripts -->
   <script>
   (function(){
-    const header = document.getElementById('siteHeader');
-    const btn    = document.getElementById('menuToggle');
-    const menu   = document.getElementById('mobileMenu');
+    const header     = document.getElementById('siteHeader');
+    const btn        = document.getElementById('menuToggle');
+    const navMobile  = document.querySelector('.nav-mobile'); // your dropdown menu
 
-    if (!header || !btn || !menu) return;
+    if (!header || !btn || !navMobile) return;
 
     // Header background on scroll
     function onScroll(){
@@ -333,20 +333,28 @@
     // Toggle mobile menu
     function toggleMenu(force){
       const isOpen = (typeof force === 'boolean') ? force : !header.classList.contains('menu-open');
+
+      // Toggle header + button state
       header.classList.toggle('menu-open', isOpen);
       btn.setAttribute('aria-expanded', isOpen);
-      menu.hidden = !isOpen;
 
-      // lock body scroll when menu open
+      // Show/hide dropdown menu
+      navMobile.classList.toggle('open', isOpen);
+      navMobile.hidden = !isOpen;
+
+      // Lock body scroll when open
       document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     }
 
+    // Click hamburger button
     btn.addEventListener('click', () => toggleMenu());
-    menu.querySelectorAll('a').forEach(link => {
+
+    // Close menu when clicking a link
+    navMobile.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => toggleMenu(false));
     });
-  })();
-  </script>
 
+  })();
+</script>
 </body>
 </html>

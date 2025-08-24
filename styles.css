@@ -38,9 +38,11 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  display: grid;                        /* symmetric layout */
+  /* display:grid;                         */
   grid-template-columns: auto auto 1fr auto; /* menu | brand | spacer | right nav */
   column-gap: 12px;
+  display: flex;                
+  justify-content: space-between;    
   align-items: center;
   height: var(--nav-height);
   padding: 0 12px;
@@ -68,9 +70,9 @@ body {
 
 /* Desktop nav (right) */
 .nav-desktop{
-  justify-self: end;
+  justify-self:end;
   display: flex;
-  align-items: center;
+  align-items:center;
   gap: 22px;
 }
 .nav-desktop a{
@@ -105,19 +107,37 @@ body {
 .menu-open .menu-btn span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 /* Mobile/overlay panel (single definitive block) */
-.nav-mobile{
-  position: fixed;
-  top: var(--nav-height,56px);
-  left: 0; right: 0;
+.nav-mobile {
+  position: absolute;       /* 👈 change from fixed */
+  top: 100%;                /* 👈 appear just below navbar */
+  left: 0;
+  right: 0;
   background: rgba(33,42,44,.96);
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 12px 14px;
   border-bottom: 1px solid #384247;
-  max-height: 0;               /* closed state */
-  overflow: hidden;
-  transition: max-height .28s ease;
+
+  max-height: 0;            /* collapsed */
+  overflow: hidden;         /* hide content */
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+
+  z-index: 2000;
+  visibility: hidden;       /* fully hidden */
+  opacity: 0;               /* fade out */
+}
+/* When open */
+.nav-mobile.open {
+  max-height: 100vh;        /* expand fully */
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Smooth slide-down animation */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .menu-open #mobileMenu {
@@ -386,13 +406,20 @@ footer {
 }
 @media (max-width: 900px){
   body { padding-top: 54px; }
-  #siteHeader.nav{ height: 54px; grid-template-columns: auto auto 1fr; }
+  #siteHeader.nav{ 
+    height: 54px; 
+    grid-template-columns: auto auto 1fr; 
+    justify-content: flex-start;
+  }
   #siteHeader.scrolled{ height: 50px; }
   .nav-desktop{ display: none; }
   .brand-logo{ height: 32px; }
   .brand-text{ font-size: 1.05rem; }
   .menu-btn {
     display: inline-flex;  /* 👈 now visible on mobile */
+  }
+  .brand {
+    margin-left: 8px; /* slight spacing */
   }
 }
 
