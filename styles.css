@@ -199,25 +199,25 @@ body {
 /* =========================
   HERO (HOME)
   ========================= */
+/* Base hero */
 .hero-image {
   position: relative;
   width: 100%;
-  min-height: 650px;
+  /* min-height: 650px; */
   background: url('Web page.png') center center / cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 32px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   /* lock background to viewport */
+  min-height: 100dvh;             /* fill visible screen */
 }
+/* Remove fixed on mobile/modern browsers, keep cover by default */
 .hero-image {
-  position: relative;
-  width: 100%;
-  min-height: 650px;
-  background: url('Web page.png') center center / cover no-repeat; /* mobile-safe (no fixed) */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 32px;
+  background-attachment: scroll;
   min-height: 100dvh;
 }
 
@@ -238,7 +238,11 @@ body {
   background: rgba(33,42,44,0.82);
   border-radius: 14px;
   box-shadow: 0 10px 32px rgba(0,0,0,.35);
+  position: static;
+  transform: none;
+  margin: 0;
 }
+
 .hero-text.hero-text--responsive h1{
   font-weight: 800;
   font-style: italic;
@@ -440,48 +444,61 @@ footer {
   .hero-text.hero-text--responsive{ transform: translate(-50%, -42%); padding: 16px 12px; }
 }
 
-/* ===== Keep hero background landscape on mobile (Safari-safe) ===== */
-@media (max-width: 900px){
+/* ===== Final overrides to match sample behavior ===== */
+/* Desktop/tablet: immersive full-bleed hero and centered overlay */
+@media (min-width: 901px){
   .hero-image{
-    /* Height with modern/fallback viewport units */
-    min-height: 70dvh;              /* visual area to fit collage */
-    max-height: 84dvh;              /* avoid tall empty region */
-    height: auto;
-    padding-bottom: 0;
-
+    min-height: 86vh;
+    background-position: center center;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: top center;
-    background-size: contain;       /* prevent portrait-like zoom */
-    background-color: #0e1412;      /* letterbox color if bands appear */
+    display: flex; align-items: center; justify-content: center;
   }
-  /* Center text within image area */
   .hero-text.hero-text--responsive{
-    top: 46%;
-    left: 50%;
-    transform: translate(-50%, -46%);
-    margin: 0;
+    position: static; transform: none; margin: 0;
+    max-width: 1080px;
+    padding: 24px 28px;
+    border-radius: 14px;
+    background: rgba(33,42,44,0.80);
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
   }
-
-  /* Scalable text on mobile */
   .hero-text.hero-text--responsive h1{
-    font-size: clamp(1.12rem, 4.2vw + 0.3rem, 1.65rem);
-    line-height: 1.25;
-    letter-spacing: .2px;
+    font-size: clamp(1.8rem, 2.4vw + 1rem, 2.6rem);
+    line-height: 1.2; letter-spacing: .3px;
   }
   .hero-text.hero-text--responsive p{
-    font-size: clamp(0.93rem, 1.6vw + 0.55rem, 1.08rem);
+    font-size: clamp(1.02rem, .6vw + .8rem, 1.15rem);
     line-height: 1.55;
   }
 }
-/* Very small phones: slight lift and gentle zoom */
-@media (max-width: 420px){
+
+/* Mobile: fill screen (no letterbox), center overlay; fonts may stay fixed if desired */
+@media (max-width: 900px){
   .hero-image{
-    background-size: 110% auto;
-    background-position: center 20%;
+    min-height: 100dvh;                  /* fill visible screen */
+    background-position: center center;
+    background-size: cover;              /* like sample: fill and tasteful crop */
+    background-repeat: no-repeat;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
   }
+
   .hero-text.hero-text--responsive{
-    top: 44%;
-    transform: translate(-50%, -44%);
-    padding: 16px 12px;
+    position: static; transform: none; margin: 0;
+    width: min(92vw, 680px);
+    padding: 18px 14px;
+    border-radius: 12px;
+    background: rgba(26,32,34,0.86);
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
   }
+
+  /* If you prefer fully fixed sizes on mobile, uncomment:
+  .hero-text.hero-text--responsive h1{ font-size: 1.6rem; }
+  .hero-text.hero-text--responsive p { font-size: 1.05rem; }
+  */
+}
+
+/* Tiny phones: small padding tweak */
+@media (max-width: 420px){
+  .hero-text.hero-text--responsive{ padding: 16px 12px; }
 }
