@@ -1,5 +1,5 @@
 /* =========================
-   THEME VARIABLES
+  THEME VARIABLES
    ========================= */
 :root {
   --primary-green: #236a3b;
@@ -18,8 +18,8 @@
 }
 
 /* =========================
-   BASE RESET
-   ========================= */
+  BASE RESET
+  ========================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 body {
@@ -86,9 +86,6 @@ body {
   color: var(--secondary-gold);
   border-bottom-color: var(--secondary-gold);
 }
-
-/* Menu button */
-
 .menu-btn {
   display: none;
   justify-self: start;
@@ -98,7 +95,6 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
