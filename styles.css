@@ -1,6 +1,6 @@
 /* =========================
   THEME VARIABLES
-   ========================= */
+  ========================= */
 :root {
   --primary-green: #236a3b;
   --secondary-gold: #fac564;
@@ -32,17 +32,17 @@ body {
 }
 
 /* =========================
-   HEADER / NAVBAR
-   ========================= */
+  HEADER / NAVBAR
+  ========================= */
 #siteHeader.nav{
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  /* display:grid;                         */
+  /* display:grid; */
   grid-template-columns: auto auto 1fr auto; /* menu | brand | spacer | right nav */
   column-gap: 12px;
-  display: flex;                
-  justify-content: space-between;    
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   height: var(--nav-height);
   padding: 0 12px;
@@ -88,6 +88,8 @@ body {
   color: var(--secondary-gold);
   border-bottom-color: var(--secondary-gold);
 }
+
+/* Burger */
 .menu-btn {
   display: none;
   justify-self: start;
@@ -106,10 +108,10 @@ body {
 .menu-open .menu-btn span:nth-child(2){ opacity:0; }
 .menu-open .menu-btn span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile/overlay panel (single definitive block) */
+/* Mobile/overlay panel */
 .nav-mobile {
-  position: absolute;       /* 👈 change from fixed */
-  top: 100%;                /* 👈 appear just below navbar */
+  position: absolute;     /* appears below navbar */
+  top: 100%;
   left: 0;
   right: 0;
   background: rgba(33,42,44,.96);
@@ -119,43 +121,37 @@ body {
   padding: 12px 14px;
   border-bottom: 1px solid #384247;
 
-  max-height: 0;            /* collapsed */
-  overflow: hidden;         /* hide content */
+  max-height: 0;          /* collapsed */
+  overflow: hidden;       /* hide content */
   transition: max-height 0.3s ease, opacity 0.3s ease;
 
   z-index: 2000;
-  visibility: hidden;       /* fully hidden */
-  opacity: 0;               /* fade out */
+  visibility: hidden;     /* fully hidden */
+  opacity: 0;             /* fade out */
 }
 /* When open */
 .nav-mobile.open {
-  max-height: 100vh;        /* expand fully */
+  max-height: 100vh;
   visibility: visible;
   opacity: 1;
 }
 
-/* Smooth slide-down animation */
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
+/* helper (not strictly needed but kept) */
 .menu-open #mobileMenu {
-  max-height: 70vh;          /* open state */
-  overflow-y: auto;          /* scroll if too tall */
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .nav-mobile a{
   color: #fff; text-decoration: none; font-weight: 700;
   padding: 10px 6px; border-radius: 6px;
 }
-
 .nav-mobile a:hover, .nav-mobile a.active{
   background: rgba(255,255,255,.08);
   color: var(--secondary-gold,#fac564);
 }
 
-
+/* legacy menu helper */
 @media (max-width: 768px) {
   .menu {
     flex-direction: column;
@@ -165,26 +161,26 @@ body {
     top: 100%;
     left: 0;
     right: 0;
-    overflow-y: auto;          /* make it scrollable */
-    max-height: 0;             /* start hidden */
+    overflow-y: auto;
+    max-height: 0;
     opacity: 0;
     transition: max-height 0.4s ease, opacity 0.3s ease;
     pointer-events: none;
   }
   .menu-open .menu {
-    max-height: 70vh;          /* up to 70% of screen height */
+    max-height: 70vh;
     opacity: 1;
     pointer-events: auto;
   }
 }
 
-
 /* When menu is open */
 .menu-open .menu {
-  max-height: 500px;          /* enough to show all items */
+  max-height: 500px;
   opacity: 1;
-  pointer-events: auto;       /* clickable */
+  pointer-events: auto;
 }
+
 /* Legacy anchor style (kept for compatibility) */
 #siteHeader nav a {
   color: #fff;
@@ -201,8 +197,8 @@ body {
 }
 
 /* =========================
-   HERO (HOME)
-   ========================= */
+  HERO (HOME)
+  ========================= */
 .hero-image {
   position: relative;
   width: 100%;
@@ -217,15 +213,13 @@ body {
   position: relative;
   width: 100%;
   min-height: 650px;
-  background: url('Web page.png') center center / cover no-repeat;
-  /* removed "fixed" */
+  background: url('Web page.png') center center / cover no-repeat; /* mobile-safe (no fixed) */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 32px;
   min-height: 100dvh;
 }
-
 
 .hero-text {
   position: absolute;
@@ -271,8 +265,8 @@ body {
 .hero-text p { font-size: 1.1rem; }
 
 /* =========================
-   SECTIONS / CARDS / BUTTONS
-   ========================= */
+  SECTIONS / CARDS / BUTTONS
+  ========================= */
 .section-pad { padding: 36px 20px; }
 .section-title {
   text-align: center;
@@ -320,8 +314,8 @@ body {
 .bullet { list-style: disc; max-width: 720px; margin: 0 auto; padding-left: 20px; }
 
 /* =========================
-   PAGE HERO (CARS/SELFDRIVE)
-   ========================= */
+  PAGE HERO (CARS/SELFDRIVE)
+  ========================= */
 .page-hero {
   background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
   color: #0d4021;
@@ -333,8 +327,8 @@ body {
 }
 
 /* =========================
-   WHY CHOOSE
-   ========================= */
+  WHY CHOOSE
+  ========================= */
 .why-choose {
   background: #e9f7ff;
   border-radius: 8px;
@@ -346,8 +340,8 @@ body {
 .why-choose .section-title { color: #0c6a97; }
 
 /* =========================
-   FOOTER
-   ========================= */
+  FOOTER
+  ========================= */
 footer {
   text-align: center;
   background: #1f2a23;
@@ -357,8 +351,8 @@ footer {
 }
 
 /* =========================
-   INTRO SECTION
-   ========================= */
+  INTRO SECTION
+  ========================= */
 .intro {
   background: #ffffff;
   border-radius: 12px;
@@ -380,8 +374,8 @@ footer {
 }
 
 /* =========================
-   PACKAGES SECTION
-   ========================= */
+  PACKAGES SECTION
+  ========================= */
 .packages-slider{
   display:flex; gap:22px; overflow-x:auto; padding:6px 6px 18px;
   scroll-snap-type:x mandatory; scroll-behavior: smooth;
@@ -411,33 +405,28 @@ footer {
 .btn.btn-ghost:hover{ background:var(--primary-green); color:#fff; }
 .pkg-card{ min-height:450px; }
 
-
 /* =========================
-   RESPONSIVE
-   ========================= */
+  RESPONSIVE
+  ========================= */
 @media (min-width: 901px){
   .nav-mobile{ display:none !important; }
 }
 @media (max-width: 900px){
   body { padding-top: 54px; }
-  #siteHeader.nav{ 
-    height: 54px; 
-    grid-template-columns: auto auto 1fr; 
+  #siteHeader.nav{
+    height: 54px;
+    grid-template-columns: auto auto 1fr;
     justify-content: flex-start;
   }
   #siteHeader.scrolled{ height: 50px; }
   .nav-desktop{ display: none; }
   .brand-logo{ height: 32px; }
   .brand-text{ font-size: 1.05rem; }
-  .menu-btn {
-    display: inline-flex;  /* 👈 now visible on mobile */
-  }
-  .brand {
-    margin-left: 8px; /* slight spacing */
-  }
+  .menu-btn { display: inline-flex; }
+  .brand { margin-left: 8px; }
 }
 
-/* Hero adjustments on small screens */
+/* Hero adjustments on small screens (existing) */
 @media (max-width: 600px){
   .hero-image{ min-height: 70vh; }
   .hero-text.hero-text--responsive{
@@ -449,4 +438,26 @@ footer {
 }
 @media (max-width: 400px){
   .hero-text.hero-text--responsive{ transform: translate(-50%, -42%); padding: 16px 12px; }
+}
+
+/* ===== NEW: Keep hero background landscape on mobile (Safari-safe) ===== */
+@media (max-width: 900px){
+  .hero-image{
+    /* Height with Safari-friendly/modern fallbacks */
+    min-height: 90vh;                 /* fallback */
+    min-height: 90dvh;                /* dynamic viewport */
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;         /* prevent portrait-like zoom */
+    background-color: #0e1412;        /* letterbox color if bands appear */
+  }
+  /* Slightly lift overlay for better composition after contain */
+  .hero-text.hero-text--responsive{ transform: translate(-50%, -47%); }
+}
+/* Very small phones: gentle zoom to reduce side bands, still landscape */
+@media (max-width: 420px){
+  .hero-image{
+    background-size: 110% auto;
+    background-position: center 20%;
+  }
 }
