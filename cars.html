@@ -2,22 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brotherstravel – Car List</title>
+  <title>Brotherstravel – Car Rental</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Header -->
   <header id="siteHeader" class="nav">
-    <div class="logo">
-      <a href="index.html" style="display:inline-flex; align-items:center; text-decoration:none; color:inherit;">
-        <img src="Logo_white.png" alt="Brotherstravel logo" style="height:80px; width:auto; vertical-align:middle; margin-right:8px;">
-        Brotherstravel.tour
-      </a>
-    </div>
-    <nav>
+    <!-- Menu button -->
+    <button id="menuToggle" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Brand -->
+    <a href="index.html" class="brand">
+      <img src="Logo_white.png" alt="Brotherstravel logo" class="brand-logo">
+      <span class="brand-text">Brotherstravel.tour</span>
+    </a>
+
+    <!-- Desktop nav (right area) -->
+    <nav class="nav-desktop">
       <a href="index.html">Home</a>
-      <a href="cars.html" class="active">Car List</a>
+      <a href="packages.html">Packages</a>
+      <a href="cars.html" class="active">Car Rental</a>
       <a href="selfdrive.html">Self Drive</a>
+      <a href="office-trips.html">Office Trips</a>
+      <a href="contact.html">Contacts</a>
+    </nav>
+
+    <!-- Mobile/overlay menu -->
+    <nav id="mobileMenu" class="nav-mobile" hidden>
+      <a href="index.html">Home</a>
+      <a href="packages.html">Packages</a>
+      <a href="cars.html" class="active">Car Rental</a>
+      <a href="selfdrive.html">Self‑Driving</a>
+      <a href="office-trips.html">Office Trips</a>
+      <a href="contact.html">Contacts</a>
     </nav>
   </header>
 
@@ -87,15 +107,49 @@
   </footer>
 
   <script>
-    (function () {
-      const header = document.getElementById('siteHeader');
-      const onScroll = () => {
-        if (window.scrollY > 10) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-  </script>
+  (function(){
+    const header     = document.getElementById('siteHeader');
+    const btn        = document.getElementById('menuToggle');
+    const navMobile  = document.querySelector('.nav-mobile'); // your dropdown menu
+
+    if (!header || !btn || !navMobile) return;
+
+    // Header background on scroll
+    function onScroll(){
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Toggle mobile menu
+    function toggleMenu(force){
+      const isOpen = (typeof force === 'boolean') ? force : !header.classList.contains('menu-open');
+
+      // Toggle header + button state
+      header.classList.toggle('menu-open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+
+      // Show/hide dropdown menu
+      navMobile.classList.toggle('open', isOpen);
+      navMobile.hidden = !isOpen;
+
+      // Lock body scroll when open
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    }
+
+    // Click hamburger button
+    btn.addEventListener('click', () => toggleMenu());
+
+    // Close menu when clicking a link
+    navMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+  })();
+</script>
 </body>
 </html>
