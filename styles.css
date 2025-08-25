@@ -537,7 +537,36 @@ footer {
   border-radius: 8px;
   transition: background .2s, color .2s, transform .2s, border-color .2s;
 }
-.social-btn:hover{ color: #232323; background: #fac564; border-color: #fac564; transform: translateY(-1px); }
+
+/* Make the SVGs inherit the button color so hover is consistent */
+.social-btn svg,
+.social-btn svg *{
+  fill: currentColor !important;
+  stroke: currentColor !important;   /* for icons that use stroke */
+}
+
+/* Hover/focus: gold pill with dark icon so it stays visible */
+.social-btn:hover,
+.social-btn:focus-visible{
+  background: var(--secondary-gold);
+  border-color: var(--secondary-gold);
+  color: #1f2427;            /* dark icon on gold */
+  transform: translateY(-1px);
+  outline: none;
+}
+/* Active press feedback */
+.social-btn:active{
+  transform: translateY(0);
+  filter: brightness(.96);
+}
+
+/* Safety: if any SVG path is hard-coded white, force it to dark on hover */
+.social-btn:hover svg [fill="#fff"],
+.social-btn:hover svg [fill="#FFFFFF"]{
+  fill: #1f2427 !important;
+}
+
+/* .social-btn:hover{ color: #232323; background: #fac564; border-color: #fac564; transform: translateY(-1px); } */
 
 /* Divider + legal */
 .footer-sep{
