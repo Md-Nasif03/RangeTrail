@@ -862,5 +862,66 @@ footer {
   }
 }
 
+/* Query and why to choose in car rental page */
+/* Two-column wrapper for why + form */
+.two-up{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.two-up__col{ min-width: 0; }
+@media (min-width: 900px){
+  .two-up{
+    grid-template-columns: 1fr 1fr; /* side by side */
+    align-items: start;
+  }
+}
+
+/* Hire form theme */
+.hire-form{ background: #1a2320; border-radius: 12px; padding: 16px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.hire-form .section-title{ margin-bottom: 10px; color: var(--secondary-gold); }
+
+.form-label{
+  display:block; margin: 10px 0 6px; color: #cfe3d9; font-weight: 700;
+}
+.form-input, .form-textarea, .hire-form select{
+  width: 100%;
+  border: 2px solid #223c31;
+  background: #172a25;
+  color: #e9f6ef;
+  border-radius: 8px;
+  padding: 12px 12px;
+  font: inherit;
+  outline: none;
+}
+.form-input::placeholder, .form-textarea::placeholder{ color:#a9b9b2; }
+.form-input:focus, .form-textarea:focus, .hire-form select:focus{
+  border-color: var(--secondary-gold);
+  box-shadow: 0 0 0 3px rgba(250,197,100,.22);
+}
+
+.btn.btn-block{
+  width: 100%;
+  margin-top: 12px;
+  background: var(--primary-green);
+  color: #fff;
+  font-weight: 800;
+  border-radius: 10px;
+  padding: 12px 18px;
+  border: 0;
+  transition: background .18s ease, color .18s ease, transform .06s ease;
+}
+.btn.btn-block:hover,
+.btn.btn-block:focus-visible{
+  background: var(--secondary-gold);
+  color: #1b2320;
+}
+.btn.btn-block:active{ transform: translateY(1px); }
+
+.form-status{ margin-top: 8px; color: #cfd6da; font-size: .95rem; }
+
+
 
 

@@ -310,7 +310,10 @@
 
     </section>
     <!-- Why choose -->
-    <section class="why-choose section-pad">
+    <section class="section-pad two-up">
+  <!-- Left: Why Brotherstravel -->
+  <div class="two-up__col">
+    <section class="why-choose">
       <h2 class="section-title">Why Brotherstravel?</h2>
       <ul class="bullet">
         <li><strong>Tailored to Your Budget</strong> – Travel packages designed to fit your financial plan.</li>
@@ -321,6 +324,52 @@
         <li><strong>Safe & Comfortable Transport</strong> – Reliable travel options for a worry-free journey.</li>
       </ul>
     </section>
+  </div>
+
+  <!-- Right: Hire Now form -->
+  <div class="two-up__col">
+    <section class="hire-form">
+      <h2 class="section-title">Hire Now!</h2>
+
+      <form id="hire-form">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" name="from_name" placeholder="Full name" required>
+
+        <label class="form-label" for="email">Your Email</label>
+        <input class="form-input" type="email" id="email" name="reply_to" placeholder="email@example.com" required>
+
+        <label class="form-label" for="car">Type of Car</label>
+        <select class="form-input" id="car" name="car_type" required>
+          <option value="" selected disabled>Select Car</option>
+          <option>Toyota Innova</option>
+          <option>Toyota Innova Crysta</option>
+          <option>Swift Dzire</option>
+          <option>Force Traveller</option>
+          <option>Force Urbania</option>
+          <option>Maruti Alto</option>
+          <option>Scorpio</option>
+          <option>Bolero</option>
+          <option>Thar</option>
+          <option>Honda City</option>
+          <option>Amaze</option>
+          <option>Brezza</option>
+          <option>Maruti Fronx</option>
+        </select>
+
+        <label class="form-label" for="message">Your Message</label>
+        <textarea class="form-textarea" id="message" name="message" rows="6" placeholder="Trip dates, pickup, special requests..." required></textarea>
+
+        <!-- Hidden fields used by the mail sender -->
+        <input type="hidden" name="to_email" value="brotherstravel.assam@gmail.com">
+        <input type="hidden" id="subject-field" name="subject" value="Interested in renting -">
+
+        <button type="submit" class="btn btn-block">Send Request</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</section>
+
   </main>
 
 <footer class="site-footer">
@@ -403,50 +452,105 @@
   </div>
 </footer>
 
-  <script>
-  (function(){
-    const header     = document.getElementById('siteHeader');
-    const btn        = document.getElementById('menuToggle');
-    const navMobile  = document.querySelector('.nav-mobile'); // your dropdown menu
+  <!-- Navbar + Form scripts (place before </body>) -->
+<script>
+/* ===== Site header / mobile menu (existing) ===== */
+(function(){
+  const header = document.getElementById('siteHeader');
+  const btn = document.getElementById('menuToggle');
+  const navMobile = document.querySelector('.nav-mobile');
 
-    if (!header || !btn || !navMobile) return;
+  if (!header || !btn || !navMobile) return;
 
-    // Header background on scroll
-    function onScroll(){
-      if (window.scrollY > 10) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+  function onScroll(){
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  function toggleMenu(force){
+    const isOpen = (typeof force === 'boolean') ? force : !header.classList.contains('menu-open');
+    header.classList.toggle('menu-open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    navMobile.classList.toggle('open', isOpen);
+    navMobile.hidden = !isOpen;
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }
+
+  btn.addEventListener('click', () => toggleMenu());
+  navMobile.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+})();
+
+/* ===== Hire Now form (EmailJS) ===== */
+/* Loads the EmailJS SDK, initializes it, then wires the form submit */
+(function(){
+  // Bail out gracefully if the form isn't on this page
+  const form = document.getElementById('hire-form');
+  if (!form) return;
+
+  // Inject SDK only once if not present
+  const sdkSrc = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+  const alreadyLoaded = !!document.querySelector('script[src*="emailjs-com"]');
+
+  function initAndWire(){
+    try {
+      // Initialize with your public key
+      emailjs.init("MXg_OsDPiz_zR-o4F");
+    } catch(e){
+      console.warn("Email service init failed or not loaded yet.", e);
+    }
+
+    const statusEl = document.getElementById('form-status');
+    const subjectEl = document.getElementById('subject-field');
+    const carEl = document.getElementById('car');
+    const nameEl = document.getElementById('name');
+    const messageEl = document.getElementById('message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Build subject using selected car
+      const car = (carEl && carEl.value) ? carEl.value : 'car';
+      if (subjectEl) subjectEl.value = `Interested in renting "${car}"`;
+
+      // Append closing to message body
+      const baseMsg = (messageEl && messageEl.value) ? messageEl.value.trim() : '';
+      if (messageEl && nameEl) {
+        messageEl.value = baseMsg + `\n\nThank you,\n${nameEl.value.trim()}`;
       }
-    }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Toggle mobile menu
-    function toggleMenu(force){
-      const isOpen = (typeof force === 'boolean') ? force : !header.classList.contains('menu-open');
+      if (statusEl) statusEl.textContent = 'Sending...';
 
-      // Toggle header + button state
-      header.classList.toggle('menu-open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen);
-
-      // Show/hide dropdown menu
-      navMobile.classList.toggle('open', isOpen);
-      navMobile.hidden = !isOpen;
-
-      // Lock body scroll when open
-      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-    }
-
-    // Click hamburger button
-    btn.addEventListener('click', () => toggleMenu());
-
-    // Close menu when clicking a link
-    navMobile.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => toggleMenu(false));
+      try {
+        // Send using your Service and Template IDs configured in the email service
+        await emailjs.sendForm("service_q8musfk","template_ns3st0v", form);
+        if (statusEl) statusEl.textContent = 'Sent! We will get back shortly.';
+        form.reset();
+      } catch(err){
+        if (statusEl) statusEl.textContent = 'Failed to send. Please try again.';
+        console.error(err);
+      }
     });
+  }
 
-  })();
+  if (alreadyLoaded) {
+    initAndWire();
+  } else {
+    const s = document.createElement('script');
+    s.src = sdkSrc;
+    s.async = true;
+    s.onload = initAndWire;
+    s.onerror = () => console.error("Failed to load email SDK.");
+    document.head.appendChild(s);
+  }
+})();
 </script>
+
 </body>
 </html>
