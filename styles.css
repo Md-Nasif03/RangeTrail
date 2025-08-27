@@ -653,3 +653,71 @@ footer {
 @media (max-width: 420px){
   .hero-text.hero-text--responsive{ padding: 16px 12px; }
 }
+
+/* Packages style */
+/* Vertical/grid packages list (4 per row on desktop) */
+.packages-list{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr)); /* 4 columns on wide screens */
+  gap: 24px;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6px;
+}
+
+/* Ensure cards behave as grid items, not slider items */
+.packages-list .pkg-card{
+  flex: 0 0 auto;          /* ignore old flex basis from slider */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional: subtle hover lift matches existing style */
+.packages-list .pkg-card:hover{
+  transform: translateY(-2px);
+}
+
+/* Section tagline under titles */
+.section-tagline{
+  text-align: center;
+  max-width: 900px;
+  margin: -6px auto 18px;   /* tighten to the title, then space before grid */
+  color: #455a64;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Slightly larger on wider screens for readability */
+@media (min-width: 901px){
+  .section-tagline{
+    font-size: 1.05rem;
+  }
+}
+
+
+/* Tablet: 3 per row */
+@media (max-width: 1200px){
+  .packages-list{
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
+/* Small tablets: 2 per row */
+@media (max-width: 900px){
+  .packages-list{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 600px){
+  .packages-list{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* If the old horizontal slider styles remain in CSS, these guards prevent overflow and scrollbars */
+.packages-list::-webkit-scrollbar{ display: none; }
+
