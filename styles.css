@@ -271,7 +271,7 @@ body {
 /* =========================
   SECTIONS / CARDS / BUTTONS
   ========================= */
-.section-pad { padding: 36px 20px; }
+.section-pad { padding: 10px 20px; }
 .section-title {
   text-align: center;
   color: var(--primary-green);
@@ -921,6 +921,165 @@ footer {
 .btn.btn-block:active{ transform: translateY(1px); }
 
 .form-status{ margin-top: 8px; color: #cfd6da; font-size: .95rem; }
+
+/* Self-drive page */
+/* Price row in car card */
+.car-card__price{
+  margin-top: 10px;
+  display: flex; align-items: center; justify-content: flex-start;
+}
+.car-card__price .price-amt{
+  background: rgba(250,197,100,.15);
+  color: var(--secondary-gold);
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(250,197,100,.25);
+}
+
+/* Modal base */
+.modal{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55);
+  display: grid; place-items: center;
+  z-index: 3000;
+}
+.modal[hidden]{ display:none; }
+
+/* Dialog card */
+.modal__dialog{
+  width: min(92vw, 560px);
+  background: #1a2320;
+  color: #e9f6ef;
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.35);
+  padding: 16px;
+  border: 1px solid #223c31;
+  position: relative;
+}
+.modal__title{
+  margin: 0 0 10px; color: var(--secondary-gold);
+  font-weight: 800;
+}
+.modal__close{
+  position: absolute; top: 8px; right: 10px;
+  background: transparent; border: 0; color: #cfd6da;
+  font-size: 26px; cursor: pointer; line-height: 1;
+}
+.modal__close:hover{ color: var(--secondary-gold); }
+
+/* Form layout inside modal */
+.sd-form .form-label{ display:block; margin: 10px 0 6px; color: #cfe3d9; font-weight: 700; }
+.sd-form .form-input, .sd-form select{
+  width: 100%; border: 2px solid #223c31; background: #172a25; color: #e9f6ef;
+  border-radius: 8px; padding: 12px; font: inherit; outline: none;
+}
+.sd-form .form-input:focus, .sd-form select:focus{
+  border-color: var(--secondary-gold); box-shadow: 0 0 0 3px rgba(250,197,100,.22);
+}
+.sd-daterow{ display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 600px){
+  .sd-daterow{ grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+.sd-datecol{ min-width: 0; }
+
+/* Buttons follow site theme */
+.modal .btn.btn-block{ width: 100%; margin-top: 12px; background: var(--primary-green); }
+.modal .btn.btn-block:hover, .modal .btn.btn-block:focus-visible{ background: var(--secondary-gold); color:#1b2320; }
+
+/* Put price and Book Now on the same row (self-drive cards only) */
+.sd-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.car-card__price .price-amt{
+  background: rgba(250,197,100,.15);
+  color: var(--secondary-gold);
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(250,197,100,.25);
+  white-space: nowrap;
+}
+
+.sd-row .car-card__cta{
+  margin: 0;                 /* overrides any previous top margin */
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 0 auto;
+}
+
+.sd-row .btn{
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--primary-green);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Allow wrap on very small screens */
+@media (max-width: 420px){
+  .sd-row{ flex-wrap: wrap; gap: 8px 12px; }
+  .sd-row .car-card__cta{ width: 100%; justify-content: flex-start; }
+}
+
+/* Enhanced section title pill */
+.section-subtitle{
+  /* layout */
+  max-width: 1200px;
+  margin: 16px auto 14px;
+  padding: 10px 16px;
+
+  /* look */
+  color:var(--primary-green);                  /* bright accent text */
+  background: rgba(17, 58, 43, 0.18); /* translucent green */
+  border: 1px solid rgba(14, 224, 138, 0.22);
+  border-radius: 12px;
+
+  /* typography */
+  font-size: 1.28rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+
+  /* subtle glow for depth */
+  box-shadow: 0 6px 18px rgba(0,0,0,.08), inset 0 0 0 1px rgba(14,224,138,.08);
+
+  /* ensure the pill doesn’t stretch edge-to-edge on small screens */
+  width: calc(100% - 24px);
+  text-align: center;
+}
+
+/* Slightly larger on wider screens */
+@media (min-width: 900px){
+  .section-subtitle{
+    font-size: 1.35rem;
+    padding: 12px 18px;
+    border-radius: 14px;
+  }
+}
+
+/* Optional: add a subtle left bar for emphasis on desktop */
+@media (min-width: 1024px){
+  .section-subtitle{
+    position: relative;
+    padding-left: 22px;
+  }
+  .section-subtitle::before{
+    content: "";
+    position: absolute;
+    left: 10px; top: 50%; transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: linear-gradient(180deg, #0ee08a 0%, #ffd27d 100%);
+    border-radius: 2px;
+    opacity: .9;
+  }
+}
+
+
 
 
 
