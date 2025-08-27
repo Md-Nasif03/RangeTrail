@@ -994,6 +994,9 @@ footer {
   justify-content: space-between;
   gap: 12px;
   margin-top: 10px;
+  /* allow content to shrink instead of wrapping early */
+  flex-wrap: nowrap;
+  min-width: 0
 }
 
 .car-card__price .price-amt{
@@ -1011,16 +1014,31 @@ footer {
   display: flex;
   justify-content: flex-end;
   flex: 1 0 auto;
+  flex: 1 1 auto;      /* take remaining space but allow shrink */
+  min-width: 0;        /* critical for Safari to avoid overflow */
 }
 
 .sd-row .btn{
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 10px;
   background: var(--primary-green);
   font-weight: 800;
   white-space: nowrap;
+  flex: 0 1 auto; 
 }
-
+/* Price pill: don’t grow, allow shrink if needed */
+.sd-row .car-card__price{
+  flex: 0 1 auto;      /* was implicit; make explicit for Safari */
+  min-width: 0;
+}
+.sd-row .price-amt{
+  white-space: nowrap;
+}
+/* Extra safety on very narrow devices */
+@media (max-width: 375px){
+  .sd-row{ gap: 10px; }
+  .sd-row .btn{ padding: 10px 12px; }
+}
 /* Allow wrap on very small screens */
 @media (max-width: 420px){
   .sd-row{ flex-wrap: wrap; gap: 8px 12px; }
