@@ -1040,10 +1040,37 @@ footer {
   .sd-row .btn{ padding: 10px 12px; }
 }
 /* Allow wrap on very small screens */
-@media (max-width: 420px){
-  .sd-row{ flex-wrap: wrap; gap: 8px 12px; }
-  .sd-row .car-card__cta{ width: 100%; justify-content: flex-start; }
+@media (max-width: 420px) {
+  .sd-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .sd-row .car-card__price {
+    justify-content: center !important; /* override left-align */
+    width: 100%;
+    display: flex;
+  }
+  .sd-row .price-amt {
+    margin: 0 auto;
+  }
+  .sd-row .car-card__cta {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-top: 0;
+  }
+  .sd-row .btn {
+    display: block;
+    width: 80%; /* or 100% for full width button on small screens */
+    max-width: 220px;
+    min-width: 120px;
+    margin: 0 auto;
+  }
 }
+
 
 /* Enhanced section title pill */
 .section-subtitle{
