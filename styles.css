@@ -1124,6 +1124,103 @@ footer {
   }
 }
 
+/* Contact details */
+/* Contact section: force black text */
+.contact-info,
+.contact-info .contact-blurb,
+.contact-info .contact-list li,
+.contact-info .contact-list li a,
+.contact-info .contact-hours {
+  color: #000 !important;
+}
+
+/* Keep links visibly black even on hover/focus */
+.contact-info .contact-list li a:hover,
+.contact-info .contact-list li a:focus {
+  color: #000 !important;
+  text-decoration: underline;
+}
+
+/* Soft light‑green blurred background behind the contact details */
+.contact-info {
+  position: relative;
+  isolation: isolate;              /* ensures the blur doesn’t bleed outside */
+  border-radius: 14px;
+  padding: 14px;
+  overflow: hidden;
+  background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
+  color: #0d4021;
+  border: 1px solid rgba(14, 224, 138, 0.18);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+
+/* Ambient blur glow layer */
+.contact-info::before {
+  content: "";
+  position: absolute;
+  inset: -20px;                    /* extend beyond edges for smoother blur */
+  background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
+  filter: blur(26px);              /* the blur effect */
+  z-index: -1;                     /* behind content */
+  opacity: .9;
+  border-radius: 18px;
+}
+
+/* Optional: tighten inner text spacing on small screens */
+@media (max-width: 480px){
+  .contact-info{ padding: 12px; border-radius: 12px; }
+  .contact-info::before{ filter: blur(22px); }
+}
+
+/* Partner Invitation style */
+.cta-owner{
+  position: relative;
+  isolation: isolate;
+  margin: 0 auto 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
+  color: #0d4021;                /* light green tint */
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  border: 1px solid rgba(14,224,138,.18);
+  overflow: hidden;
+}
+.cta-owner::before{
+  content:"";
+  position:absolute; inset:-22px;
+  background: linear-gradient(110deg, #e7f3ea 0%, #d9efe7 100%);
+  filter: blur(26px);
+  z-index:-1;
+  border-radius:18px;
+}
+
+.cta-owner__title{
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: var(--primary-green);
+}
+
+.cta-owner__lead{
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: #0b1a14;                                   /* dark readable text */
+}
+
+.cta-owner__body{
+  margin: 0 0 8px;
+  color: #0b1a14;
+}
+
+.cta-owner__note{
+  margin: 0;
+  color: #0b1a14;
+  font-style: italic;
+  opacity: .9;
+}
+
+
+
+
 
 
 

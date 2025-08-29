@@ -47,18 +47,80 @@
   </header>
 
   <main>
-    <!-- Why choose -->
-    <section class="why-choose section-pad">
-      <h2 class="section-title">Why Brotherstravel?</h2>
-      <ul class="bullet">
-        <li><strong>Tailored to Your Budget</strong> – Travel packages designed to fit your financial plan.</li>
-        <li><strong>Fully Customizable Packages</strong> – Personalize every detail to match your preferences.</li>
-        <li><strong>Flexible Itineraries</strong> – Adjust schedules to travel at your own pace.</li>
-        <li><strong>Affordable & Transparent Pricing</strong> – No hidden costs, just fair prices.</li>
-        <li><strong>Expert Guides & 24/7 Support</strong> – Knowledgeable assistance whenever you need it.</li>
-        <li><strong>Safe & Comfortable Transport</strong> – Reliable travel options for a worry-free journey.</li>
-      </ul>
+   <!-- Contact section -->
+<section class="section-pad two-up">
+   <!-- Left column -->
+  <div class="two-up__col two-up__col--left">
+    <!-- Invitation (top) -->
+    <section class="cta-owner">
+      <h2 class="cta-owner__title">Own a Car? Partner With Us</h2>
+      <p class="cta-owner__lead">
+        Tired of paying monthly EMIs on your car? No tension—let it earn for you.
+      </p>
+      <p class="cta-owner__body">
+        We welcome car owners who wish to rent their vehicles and collaborate with our services.
+        Hand over the car to our managed rental program and we’ll take care of the bookings, pay the EMI,
+        and provide a handsome payout to you every month.
+      </p>
+      <p class="cta-owner__note">
+        <strong>Interested in partnering? Please write a mail or give a call from the contact section below.</strong>
+      </p>
     </section>
+
+    <!-- Contact details (below invitation) -->
+    <section class="contact-info">
+      <h2 class="section-title">Contact Details</h2>
+      <address class="contact-blurb">
+        <strong>Brothers Travel</strong><br>
+        House No. 23, Room No. 4, Second Floor,<br>
+        SK Boruah Path, Bylane 2 East, FA Road,<br>
+        Sixmile, Panjabari, Guwahati – 781023.
+      </address>
+      <ul class="contact-list">
+        <li>Phone: <a href="tel:+919365961218">+91 9365961218</a></li>
+        <li>Phone: <a href="tel:+919864940145">+91 9864940145</a></li>
+        <li>WhatsApp: <a href="https://wa.me/919365961218?text=Hi!"> +91 9365961218</a></li>
+        <li>Email: <a href="mailto:brotherstravel.assam@gmail.com">brotherstravel.assam@gmail.com</a></li>
+      </ul>
+      <p class="contact-hours">Hours: 24x7</p>
+    </section>
+  </div>
+
+  <!-- Right: Contact form -->
+  <div class="two-up__col">
+    <section class="hire-form">
+      <h2 class="section-title">Please write a mail to us!</h2>
+
+      <form id="hire-form">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" name="from_name" placeholder="Full name" required>
+
+        <label class="form-label" for="email">Your Email</label>
+        <input class="form-input" type="email" id="email" name="reply_to" placeholder="email@example.com" required>
+
+        <label class="form-label" for="subject">Subject</label>
+        <input class="form-input" type="text" id="subject" name="subject" placeholder="Subject" required>
+
+        <label class="form-label" for="message">Your Message</label>
+        <textarea class="form-textarea" id="message" name="message" rows="6" placeholder="Trip dates, pickup, special requests..." required></textarea>
+
+        <!-- Recipient (optional dynamic) -->
+        <input type="hidden" name="to_email" value="brotherstravel.assam@gmail.com">
+
+        <button type="submit" class="btn btn-block">Send Request</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</section>
+
+<!-- Optional: contact section helpers -->
+<style>
+  .contact-info .contact-blurb{ color:#dbe6de; line-height:1.5; margin:6px 0 10px; }
+  .contact-info .contact-list{ list-style:none; padding:0; margin:0 0 8px; }
+  .contact-info .contact-list li{ margin:4px 0; color:#cfd6da; }
+  .contact-hours{ color:#a8b4ad; margin-top:6px; }
+</style>
   </main>
 <footer class="site-footer">
   <div class="footer-wrap">
@@ -140,6 +202,60 @@
   </div>
 </footer>
   <script>
+    (function(){
+  const form = document.getElementById('hire-form');
+  if (!form) return;
+
+  const sdkSrc = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+  const alreadyLoaded = !!document.querySelector('script[src*="emailjs-com"]');
+
+  function initAndWire(){
+    try { emailjs.init("MXg_OsDPiz_zR-o4F"); } catch(e){ console.warn("Email init issue:", e); }
+
+    const statusEl  = document.getElementById('form-status');
+    const nameEl    = document.getElementById('name');
+    const subjectEl = document.getElementById('subject');
+    const messageEl = document.getElementById('message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate & normalize subject (optionally prefix it)
+      const subjectVal = subjectEl ? subjectEl.value.trim() : '';
+      if (!subjectVal) { statusEl.textContent = 'Please add a subject.'; return; }
+      // Example prefix (optional): subjectEl.value = `Contact: ${subjectVal}`;
+
+      // Append a polite signature
+      const baseMsg = (messageEl && messageEl.value) ? messageEl.value.trim() : '';
+      if (messageEl && nameEl) {
+        messageEl.value = `${baseMsg}\n\nThank you,\n${nameEl.value.trim()}`;
+      }
+
+      statusEl.textContent = 'Sending...';
+
+      try {
+        await emailjs.sendForm("service_q8musfk","template_ns3st0v", form);
+        statusEl.textContent = 'Sent! We will get back shortly.';
+        form.reset();
+      } catch(err){
+        statusEl.textContent = 'Failed to send. Please try again.';
+        console.error(err);
+      }
+    });
+  }
+
+  if (alreadyLoaded) {
+    initAndWire();
+  } else {
+    const s = document.createElement('script');
+    s.src = sdkSrc;
+    s.async = true;
+    s.onload = initAndWire;
+    s.onerror = () => console.error("Failed to load email SDK.");
+    document.head.appendChild(s);
+  }
+})();
+
   (function(){
     const header     = document.getElementById('siteHeader');
     const btn        = document.getElementById('menuToggle');
