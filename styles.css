@@ -547,7 +547,7 @@ footer {
 /* Hover/focus: gold pill with dark icon so it stays visible */
 .social-btn:hover,
 .social-btn:focus-visible{
-  background: var(--secondary-gold);
+  background: #000;
   border-color: var(--secondary-gold);
   color: #1f2427;            /* dark icon on gold */
   transform: translateY(-1px);
