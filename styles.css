@@ -1333,6 +1333,82 @@ footer {
   text-align: center;
 }
 
+/* Packages details */
+/* Core layout & typography */
+.kt-main { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#1b1b1b; line-height:1.6; }
+.kt-container { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* Hero with image */
+.kt-hero { text-align: center; margin-bottom: 18px; }
+.kt-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.15); margin-bottom: 14px; }
+.kt-title { font-size: clamp(28px, 4vw, 40px); margin: 0 0 6px; }
+.kt-subtitle { font-size: 16px; color:#444; margin: 0; }
+
+/* Intro / short blog */
+.kt-intro { background:#f8faf9; border:1px solid #e6eee9; border-radius:12px; padding:18px; margin:20px 0; }
+.kt-intro h3 { margin:10px 0 8px; font-size:18px; }
+.kt-dests { padding-left: 22px; margin: 6px 0 10px; }
+.kt-types, .kt-brief { margin: 6px 0; }
+
+/* Buttons */
+.kt-cta, .kt-secondary-cta { display:flex; justify-content:center; margin:18px 0; }
+.kt-btn { display:inline-block; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.kt-btn-primary { background:#107a4f; color:#fff; border:1px solid #0e6b46; box-shadow: 0 6px 20px rgba(16,122,79,.25); }
+.kt-btn-primary:hover { background:#0e6b46; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(16,122,79,.35); }
+.kt-btn-outline { color:#107a4f; border:1px solid #107a4f; background:#fff; }
+.kt-btn-outline:hover { background:#eaf6f1; transform: translateY(-2px); }
+
+/* Timeline */
+.kt-itinerary { margin-top: 18px; }
+.kt-itinerary h3 { font-size: 20px; margin: 0 0 14px; }
+.kt-timeline { position: relative; list-style: none; margin: 0; padding: 0 0 0 44px; }
+.kt-timeline::before { content: ""; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: repeating-linear-gradient(to bottom,#ffd84d 0 10px, transparent 10px 20px); border-radius: 3px; }
+.kt-tl-item { position: relative; margin: 0 0 18px; transform-origin: left; animation: tl-in .7s ease both; }
+.kt-tl-item:nth-child(1){animation-delay:.05s} .kt-tl-item:nth-child(2){animation-delay:.12s}
+.kt-tl-item:nth-child(3){animation-delay:.19s} .kt-tl-item:nth-child(4){animation-delay:.26s}
+.kt-tl-item:nth-child(5){animation-delay:.33s}
+@keyframes tl-in { from { opacity: 0; translate: -10px 6px; } to { opacity: 1; translate: 0 0; } }
+.kt-tl-icon { position: absolute; left: -2px; top: 2px; width: 40px; height: 40px; display: grid; place-items: center; font-size: 20px; background:#fff; border:1px solid #ffd84d; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.kt-tl-card { background:#ffffff; border:1px solid #ececec; border-radius:12px; padding:12px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.06); transition: transform .25s ease, box-shadow .25s ease; }
+.kt-tl-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,.10); }
+.kt-tl-card h2 { font-size: 18px; margin: 0 0 6px; }
+.kt-tl-card p { margin: 0; color:#333; }
+
+/* Info strip */
+.kt-info { background:#fffdf7; border:1px solid #f1e6ca; border-radius:12px; padding:18px; margin:20px 0; }
+.kt-info h3 { margin: 0 0 8px; }
+
+/* Form */
+.kt-form { background:#f7f9ff; border:1px solid #e0e7ff; border-radius:12px; padding:18px; margin-top: 20px; }
+.kt-form h3 { margin: 0 0 10px; }
+.kt-enquiry-form { display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; }
+.kt-row { display:flex; flex-direction:column; }
+.kt-row label { font-size: 13px; color:#333; margin-bottom:4px; }
+.kt-row input, .kt-row textarea { padding:10px 12px; border:1px solid #cfd7e6; border-radius:8px; font-size:14px; transition: box-shadow .2s ease, border-color .2s ease; }
+.kt-row input:focus, .kt-row textarea:focus { outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12); }
+.kt-row textarea { resize: vertical; }
+.kt-form .kt-btn { grid-column: 1 / -1; justify-self: start; }
+
+/* Micro‑interactions */
+.kt-bounce { animation: bounceY 1.4s ease-in-out infinite; }
+@keyframes bounceY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
+
+/* Scroll‑reveal animations (CSS View Timelines; degrades gracefully) */
+.kt-reveal { animation: auto linear reveal both; animation-timeline: view(); animation-range: entry 20% cover 35%; }
+@keyframes reveal { from { opacity: 0; clip-path: inset(0% 60% 0% 50%); transform: translateY(8px);} to { opacity: 1; clip-path: inset(0% 0% 0% 0%); transform: translateY(0);} }
+
+/* Float‑in for hero image */
+.kt-float-in { animation: floatIn .8s ease both; }
+@keyframes floatIn { from { opacity:0; transform: translateY(10px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
+
+/* Responsive */
+@media (max-width: 720px) {
+  .kt-enquiry-form { grid-template-columns:1fr; }
+  .kt-timeline { padding-left: 38px; }
+  .kt-tl-icon { left: -6px; }
+}
+
+
 
 
 
