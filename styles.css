@@ -1441,6 +1441,41 @@ footer {
 .kt-timeline .kt-tl-item:nth-child(4){ animation-delay:.26s }
 .kt-timeline .kt-tl-item:nth-child(5){ animation-delay:.33s }
 
+/* Initial state shared by both paths */
+.kt-reveal > *, .kt-timeline .kt-tl-item {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+/* Fall-from-above animation */
+@keyframes kt-fall-in {
+  0% { opacity:0; transform: translateY(-16px); }
+  60% { opacity:1; transform: translateY(2px); }
+  100% { opacity:1; transform: translateY(0); }
+}
+
+/* Progressive enhancement (will noop where unsupported) */
+.kt-reveal > * {
+  animation: kt-fall-in .7s ease both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+.kt-timeline .kt-tl-item {
+  animation: kt-fall-in .7s ease both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 25%;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .kt-reveal > *, .kt-timeline .kt-tl-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .kt-reveal,

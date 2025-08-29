@@ -355,6 +355,59 @@
 
   <!-- Menu + scroll scripts -->
   <script>
+// for animation
+(() => {
+  // If View Timelines supported, let CSS handle it
+  if (CSS && CSS.supports('animation-timeline: view()')) return;
+
+  const ELS = [
+    ...document.querySelectorAll('.kt-reveal'),
+    ...document.querySelectorAll('.kt-timeline .kt-tl-item')
+  ];
+
+  // Seed initial hidden state (matches CSS)
+  ELS.forEach(el => {
+    // If container with children to stagger, leave container visible and hide kids
+    const kids = el.matches('.kt-reveal') ? [...el.children] : [];
+    if (kids.length) {
+      kids.forEach(k => {
+        k.style.opacity = 0;
+        k.style.transform = 'translateY(-16px)';
+      });
+    } else {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(-16px)';
+    }
+  });
+
+  // Reveal helper
+  const reveal = (node, delaySec = 0) => {
+    node.style.transition = 'opacity .7s ease, transform .7s ease';
+    node.style.transitionDelay = delaySec + 's';
+    node.style.opacity = 1;
+    node.style.transform = 'translateY(0)';
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const target = entry.target;
+
+      // Stagger children inside .kt-reveal containers
+      if (target.matches('.kt-reveal') && target.children.length) {
+        [...target.children].forEach((child, i) => reveal(child, 0.07 * i));
+      } else {
+        // Single element (e.g., .kt-tl-item)
+        // Optional extra: small bounce easing mimic
+        reveal(target, 0);
+      }
+      io.unobserve(target);
+    });
+  }, { threshold: 0.15 });
+
+  ELS.forEach(el => io.observe(el));
+})();
+
   (() => {
     if (CSS && CSS.supports('animation-timeline: view()')) return;
 
