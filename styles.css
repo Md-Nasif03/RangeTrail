@@ -1198,6 +1198,7 @@ footer {
   margin: 0 0 6px;
   font-weight: 800;
   color: var(--primary-green);
+  text-align: center;
 }
 
 .cta-owner__lead{
