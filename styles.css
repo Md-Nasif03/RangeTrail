@@ -1394,8 +1394,64 @@ footer {
 @keyframes bounceY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
 
 /* Scroll‑reveal animations (CSS View Timelines; degrades gracefully) */
-.kt-reveal { animation: auto linear reveal both; animation-timeline: view(); animation-range: entry 20% cover 35%; }
-@keyframes reveal { from { opacity: 0; clip-path: inset(0% 60% 0% 50%); transform: translateY(8px);} to { opacity: 1; clip-path: inset(0% 0% 0% 0%); transform: translateY(0);} }
+/* Fall-from-above reveal (staggered) — extends scroll-reveal section */
+.kt-hidden { opacity: 0; transform: translateY(-16px); }
+
+@keyframes kt-fall-in {
+  0%   { opacity: 0; transform: translateY(-16px); }
+  60%  { opacity: 1; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Use existing .kt-reveal as the trigger */
+.kt-reveal {
+  animation-name: kt-fall-in, reveal;
+  animation-duration: .7s, 1s;
+  animation-timing-function: ease, linear;
+  animation-fill-mode: both, both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+/* Stagger children inside reveal containers */
+.kt-reveal > * {
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: kt-fall-in .7s ease both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+.kt-reveal > *:nth-child(1){ animation-delay:.05s }
+.kt-reveal > *:nth-child(2){ animation-delay:.12s }
+.kt-reveal > *:nth-child(3){ animation-delay:.19s }
+.kt-reveal > *:nth-child(4){ animation-delay:.26s }
+.kt-reveal > *:nth-child(5){ animation-delay:.33s }
+
+/* Timeline items fall in as they scroll into view */
+.kt-timeline .kt-tl-item {
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: kt-fall-in .7s ease both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 25%;
+}
+.kt-timeline .kt-tl-item:nth-child(1){ animation-delay:.05s }
+.kt-timeline .kt-tl-item:nth-child(2){ animation-delay:.12s }
+.kt-timeline .kt-tl-item:nth-child(3){ animation-delay:.19s }
+.kt-timeline .kt-tl-item:nth-child(4){ animation-delay:.26s }
+.kt-timeline .kt-tl-item:nth-child(5){ animation-delay:.33s }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .kt-reveal,
+  .kt-reveal > *,
+  .kt-timeline .kt-tl-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
 /* Float‑in for hero image */
 .kt-float-in { animation: floatIn .8s ease both; }
