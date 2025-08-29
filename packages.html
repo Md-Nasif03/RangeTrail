@@ -414,7 +414,25 @@
 </section>
 
         <!-- Why choose -->
-    <section class="why-choose section-pad">
+    <section class="section-pad two-up">
+  <!-- Left: Why Brotherstravel -->
+  <div class="two-up__col">
+    <!-- Invitation (top) -->
+    <section class="cta-owner">
+      <h2 class="cta-owner__title">Own a Car? Partner With Us</h2>
+      <p class="cta-owner__lead">
+        Tired of paying monthly EMIs on your car? No tension—let it earn for you.
+      </p>
+      <p class="cta-owner__body">
+        We welcome car owners who wish to rent their vehicles and collaborate with our services.
+        Hand over the car to our managed rental program and we’ll take care of the bookings, pay the EMI,
+        and provide a handsome payout to you every month.
+      </p>
+      <p class="cta-owner__note">
+        <strong>Interested in partnering? Please write a mail or give a call from the contact section below.</strong>
+      </p>
+    </section>
+    <section class="why-choose">
       <h2 class="section-title">Why Brotherstravel?</h2>
       <ul class="bullet">
         <li><strong>Tailored to Your Budget</strong> – Travel packages designed to fit your financial plan.</li>
@@ -424,6 +442,67 @@
         <li><strong>Expert Guides & 24/7 Support</strong> – Knowledgeable assistance whenever you need it.</li>
         <li><strong>Safe & Comfortable Transport</strong> – Reliable travel options for a worry-free journey.</li>
       </ul>
+    </section>
+  </div>
+
+  <!-- Right: Hire Now form -->
+  <div class="two-up__col">
+    <section class="hire-form">
+      <h2 class="section-title">How can I help you!</h2>
+
+      <form id="hire-form">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" name="from_name" placeholder="Full name" required>
+
+        <label class="form-label" for="email">Your Email</label>
+        <input class="form-input" type="email" id="email" name="reply_to" placeholder="email@example.com" required>
+
+        <label class="form-label" for="car">Package</label>
+        <select class="form-input" id="car" name="car_type" required>
+          <option value="" selected disabled>Select your desired package</option>
+          <option>Kaziranga & Pobitora Wildlife Circuit</option>
+          <option>Meghalaya Wonders: Shillong to Laitlum</option>
+          <option>Dzukou Valley Trek</option>
+          <option>Hornbill Festival Experience</option>
+          <option>Tawang Explorer</option>
+          <option>North East Grand Expedition: Assam, Meghalaya & Nagaland</option>
+          <option>Himalayan Crossroads: North East India & Bhutan Explorer</option>
+          <option>Wildlife Treasures: Kaziranga, Manas & More</option>
+          <option>Essentials of Assam-Meghalaya</option>
+          <option>Guwahati Sacred Temples Trail</option>
+          <option>Wildlife & Tribal Traditions Circuit</option>
+          <option>Green Getaway: Assam & Meghalaya Highlights</option>
+          <option>Assam-Meghalaya Hill & River Journey</option>
+          <option>Camping the Dawki & Shnongpdeng Riverfronts</option>
+          <option>Eastern Trio: Assam, Meghalaya & Bhutan Circuit</option>
+          <option>Ultimate North East Circuit: Five-State Discovery</option>
+          <option>Kamakhya Pilgrimage & City Sights</option>
+          <option>Kaziranga Rhino Safari Adventure</option>
+          <option>Festivals and Traditions of North East</option>
+          <option>Nature & Tribe Circuit: North East Immersion</option>
+          <option>Panorama of Peaks & Rivers: North East Odyssey</option>
+
+          <!-- State-wise packages list -->
+          <option>Assam Highlights: Guwahati · Kaziranga · Majuli · Sivasagar</option>
+          <option>Meghalaya Essentials: Shillong · Sohra · Dawki</option>
+          <option>Tripura Heritage: Agartala · Neermahal · Unakoti</option>
+          <option>Arunachal Monastic Trail: Bomdila · Tawang</option>
+          <option>Manipur Escape: Imphal · Loktak Lake</option>
+          <option>Nagaland Cultural Circuit: Kohima · Khonoma · Wokha</option>
+          <option>Mizoram Hills & Culture: Aizawl · Reiek · Hmuifang</option>
+          <option>Sikkim Classic: Gangtok · Tsomgo · Pelling</option>
+        </select>
+
+        <label class="form-label" for="message">Your Message</label>
+        <textarea class="form-textarea" id="message" name="message" rows="6" placeholder="Trip dates, pickup, special requests..." required></textarea>
+
+        <!-- Hidden fields used by the mail sender -->
+        <input type="hidden" name="to_email" value="brotherstravel.assam@gmail.com">
+        <input type="hidden" id="subject-field" name="subject" value="Interested in renting -">
+
+        <button type="submit" class="btn btn-block">Send Request</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
     </main>
 
