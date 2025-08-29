@@ -586,6 +586,69 @@
   </div>
 </footer>
     <script>
+      /* ===== Hire Now form (EmailJS) ===== */
+/* Loads the EmailJS SDK, initializes it, then wires the form submit */
+(function(){
+  // Bail out gracefully if the form isn't on this page
+  const form = document.getElementById('hire-form');
+  if (!form) return;
+
+  // Inject SDK only once if not present
+  const sdkSrc = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+  const alreadyLoaded = !!document.querySelector('script[src*="emailjs-com"]');
+
+  function initAndWire(){
+    try {
+      // Initialize with your public key
+      emailjs.init("MXg_OsDPiz_zR-o4F");
+    } catch(e){
+      console.warn("Email service init failed or not loaded yet.", e);
+    }
+
+    const statusEl = document.getElementById('form-status');
+    const subjectEl = document.getElementById('subject-field');
+    const carEl = document.getElementById('car');
+    const nameEl = document.getElementById('name');
+    const messageEl = document.getElementById('message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Build subject using selected car
+      const car = (carEl && carEl.value) ? carEl.value : 'car';
+      if (subjectEl) subjectEl.value = `Interested in the package: "${car}"`;
+
+      // Append closing to message body
+      const baseMsg = (messageEl && messageEl.value) ? messageEl.value.trim() : '';
+      if (messageEl && nameEl) {
+        messageEl.value = baseMsg + `\n\nThank you,\n${nameEl.value.trim()}`;
+      }
+
+      if (statusEl) statusEl.textContent = 'Sending...';
+
+      try {
+        // Send using your Service and Template IDs configured in the email service
+        await emailjs.sendForm("service_q8musfk","template_ns3st0v", form);
+        if (statusEl) statusEl.textContent = 'Sent! We will get back shortly.';
+        form.reset();
+      } catch(err){
+        if (statusEl) statusEl.textContent = 'Failed to send. Please try again.';
+        console.error(err);
+      }
+    });
+  }
+
+  if (alreadyLoaded) {
+    initAndWire();
+  } else {
+    const s = document.createElement('script');
+    s.src = sdkSrc;
+    s.async = true;
+    s.onload = initAndWire;
+    s.onerror = () => console.error("Failed to load email SDK.");
+    document.head.appendChild(s);
+  }
+})();
     (function(){
         const header     = document.getElementById('siteHeader');
         const btn        = document.getElementById('menuToggle');

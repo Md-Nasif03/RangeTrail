@@ -437,7 +437,25 @@
     </section>
 
     <!-- Why choose -->
-    <section class="why-choose section-pad">
+    <section class="section-pad two-up">
+  <!-- Left: Why Brotherstravel -->
+  <div class="two-up__col">
+    <!-- Invitation (top) -->
+    <section class="cta-owner">
+      <h2 class="cta-owner__title">Own a Car? Partner With Us</h2>
+      <p class="cta-owner__lead">
+        Tired of paying monthly EMIs on your car? No tension—let it earn for you.
+      </p>
+      <p class="cta-owner__body">
+        We welcome car owners who wish to rent their vehicles and collaborate with our services.
+        Hand over the car to our managed rental program and we’ll take care of the bookings, pay the EMI,
+        and provide a handsome payout to you every month.
+      </p>
+      <p class="cta-owner__note">
+        <strong>Interested in partnering? Please write a mail or give a call from the contact section below.</strong>
+      </p>
+    </section>
+    <section class="why-choose">
       <h2 class="section-title">Why Brotherstravel?</h2>
       <ul class="bullet">
         <li><strong>Tailored to Your Budget</strong> – Travel packages designed to fit your financial plan.</li>
@@ -447,6 +465,35 @@
         <li><strong>Expert Guides & 24/7 Support</strong> – Knowledgeable assistance whenever you need it.</li>
         <li><strong>Safe & Comfortable Transport</strong> – Reliable travel options for a worry-free journey.</li>
       </ul>
+    </section>
+  </div>
+
+  <!-- Right: Hire Now form -->
+  <div class="two-up__col">
+    <section class="hire-form">
+      <h2 class="section-title">Inform About Your destination</h2>
+      <p class="section-title-tag">We will make Custom Itineraries for you</p>
+      <form id="hire-form">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" name="from_name" placeholder="Full name" required>
+
+        <label class="form-label" for="email">Your Email</label>
+        <input class="form-input" type="email" id="email" name="reply_to" placeholder="email@example.com" required>
+
+        <label class="form-label" for="subject">Desired destination</label>
+        <input class="form-input" type="text" id="subject" name="subject" placeholder="Type your desired destination" required>
+
+        <label class="form-label" for="message">Your Message</label>
+        <textarea class="form-textarea" id="message" name="message" rows="6" placeholder="Trip dates, pickup, special requests..." required></textarea>
+
+        <!-- Recipient (optional dynamic) -->
+        <input type="hidden" name="to_email" value="brotherstravel.assam@gmail.com">
+
+        <button type="submit" class="btn btn-block">Send Request</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
     </section>
   </main>
 
@@ -532,6 +579,76 @@
 
   <!-- Menu + scroll scripts -->
   <script>
+    // form
+    (function () {
+  const form = document.getElementById('hire-form');
+  if (!form) return;
+
+  // EmailJS config
+  const SDK_SRC   = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+  const SERVICEID = "service_q8musfk";
+  const TEMPLATE  = "template_ns3st0v";
+  const USERKEY   = "MXg_OsDPiz_zR-o4F"; // public key
+
+  // Elements (match your form)
+  const statusEl  = document.getElementById('form-status');
+  const nameEl    = document.getElementById('name');      // name="from_name"
+  const emailEl   = document.getElementById('email');     // name="reply_to"
+  const subjectEl = document.getElementById('subject');   // name="subject"
+  const messageEl = document.getElementById('message');   // name="message"
+
+  function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
+
+  function initAndWire() {
+    try { emailjs.init(USERKEY); } catch (e) { console.warn("EmailJS init issue:", e); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate basics
+      const rawSubject = (subjectEl?.value || "").trim();
+      const fromName   = (nameEl?.value || "").trim();
+      const fromEmail  = (emailEl?.value || "").trim();
+      if (!fromName || !fromEmail || !rawSubject) {
+        setStatus("Please complete name, email, and destination.");
+        return;
+      }
+
+      // Prefix subject as requested
+      subjectEl.value = `I want to travel ${rawSubject}`;
+
+      // Append polite signature to message (without duplicating)
+      const baseMsg = (messageEl?.value || "").trim();
+      messageEl.value = baseMsg
+        ? `${baseMsg}\n\nThank you,\n${fromName}`
+        : `Thank you,\n${fromName}`;
+
+      setStatus("Sending...");
+
+      try {
+        await emailjs.sendForm(SERVICEID, TEMPLATE, form);
+        setStatus("Sent! We will get back shortly.");
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        setStatus("Failed to send. Please try again.");
+      }
+    });
+  }
+
+  // Load SDK once
+  if (document.querySelector('script[src*="emailjs-com"]')) {
+    initAndWire();
+  } else {
+    const s = document.createElement('script');
+    s.src = SDK_SRC;
+    s.async = true;
+    s.onload = initAndWire;
+    s.onerror = () => console.error("Failed to load EmailJS SDK.");
+    document.head.appendChild(s);
+  }
+})();
+
   (function(){
     const header     = document.getElementById('siteHeader');
     const btn        = document.getElementById('menuToggle');
