@@ -1219,6 +1219,113 @@ footer {
   opacity: .9;
 }
 
+/* Official trips */
+/* Official Trips: minimal CSS; merge into site stylesheet */
+.page-main--official { --brand:var(--primary-green); --ink:#162028; --muted:black;--card:#fff; --soft:#f3f6f8; color:var(--ink); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.page-hero { padding: 32px 0 8px; }
+.page-title { margin: 0 0 8px; font-size: clamp(28px, 3vw, 40px); }
+.page-subtitle { color: black; max-width: 900px; text-align: center; margin: 8px auto 0; }
+
+.section { padding: 20px 0; }
+.grid { display: grid; gap: 12px; }
+.grid-3 { grid-template-columns: repeat(3,1fr); }
+.grid-2 { grid-template-columns: repeat(2,1fr); }
+@media (max-width: 900px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+.card { background: var(--card); border: 1px solid #e7edf2; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.card.soft { background: var(--soft); }
+.card.cta { background: var(--brand); color: #fff; border: none; }
+.card.cta .btn.btn-light { background:#fff; color: var(--brand); padding:10px 14px; border-radius:8px; display:inline-block; }
+
+.section-title { font-size: clamp(22px, 2.5vw, 28px); margin: 0 0 12px; }
+.h5 { font-size: 18px; margin: 0 0 8px; }
+.h6 { font-size: 16px; margin: 0 6px 10px; }
+
+.list { margin: 0; padding-left: 18px; color: var(--ink); }
+.muted { color: var(--muted); }
+
+/* UPDATED TABLE COLORS */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: #1a2320;           /* requested background */
+  border: 1px solid #2b3a35;
+  border-radius: 12px;
+}
+
+/* Make inner table full-bleed on dark wrap */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  color: #e8f2ee;                /* light text for contrast */
+}
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(232, 242, 238, 0.12);
+}
+
+/* Header with same dark tone but slightly brighter for separation */
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: #22302b;           /* slightly lighter than #1a2320 */
+  color: #eaf7f2;
+  font-weight: 700;
+}
+
+/* Alternating body rows for readability */
+.table tbody tr:nth-child(odd)  { background: transparent; }
+.table tbody tr:nth-child(even) { background: rgba(234, 247, 242, 0.035); }
+
+/* Keep price columns from wrapping */
+.price-table td:nth-child(3),
+.price-table td:nth-child(4),
+.price-table td:nth-child(5) { white-space: nowrap; }
+
+/* Optional: highlight on hover */
+.table tbody tr:hover { background: rgba(234, 247, 242, 0.08); }
+
+/* Dark scheme tweak retains good contrast */
+@media (prefers-color-scheme: dark){
+  .page-main--official { --ink:#e8eef3; --muted:#9fb0bf; --card:#0f141a; --soft:#101922; }
+  .table-wrap, .card { border-color:#1e2a33; }
+  .table thead th { background:#22302b; }
+}
+.card.soft{
+  background-color: #1a2320;
+  text-align: center;
+  color: #ffffff;                 /* makes all text inside white */
+}
+
+/* Ensure nested elements don’t override it */
+.card.soft .h5,
+.card.soft p,
+.card.soft li,
+.card.soft a { color: #ffffff; }
+
+/* Optional: keep the light button readable on dark */
+.card.soft .btn.btn-light{
+  background: var(--primary-green);
+  color: #ffffff;
+}
+.card.soft .btn.btn-light:hover{
+  border-color: var(--secondary-gold);
+  background-color: var(--secondary-gold);
+  color: #000;
+}
+
+.section.section--highlights {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 
 
 
