@@ -1531,6 +1531,12 @@ footer {
     transform: none !important;
   }
 }
+.kt-timeline, .kt-tl-card {
+  min-height: 100px;
+  opacity: 1 !important;
+  transform: none !important;
+  display: block !important;
+}
 
 
 
