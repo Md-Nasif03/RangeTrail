@@ -1334,7 +1334,7 @@ footer {
 }
 
 /* ===============================
-   Packages details (Final CSS)
+   Final CSS — hover-protected (Step 2)
    =============================== */
 
 /* Core layout & typography */
@@ -1343,17 +1343,38 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
-.kt-main { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#1b1b1b; line-height:1.6; }
-.kt-container { max-width: 980px; margin: 0 auto; padding: 28px 20px 4px; }
+.kt-main {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:#1b1b1b;
+  line-height:1.6;
+}
+.kt-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 20px 4px;
+}
 
 /* Hero with image */
 .kt-hero { text-align: center; margin-bottom: 18px; }
-.kt-hero-img { width: 100%; max-height: 380px; object-fit: cover; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.15); margin-bottom: 14px; }
+.kt-hero-img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  margin-bottom: 14px;
+}
 .kt-title { font-size: clamp(28px, 4vw, 40px); margin: 0 0 6px; }
 .kt-subtitle { font-size: 16px; color:#444; margin: 0; }
 
 /* Intro / short blog */
-.kt-intro { background:#f8faf9; border:1px solid #e6eee9; border-radius:12px; padding:18px; margin:20px 0; }
+.kt-intro {
+  background:#f8faf9;
+  border:1px solid #e6eee9;
+  border-radius:12px;
+  padding:18px;
+  margin:20px 0;
+}
 .kt-intro h3 { margin:10px 0 8px; font-size:18px; }
 .kt-dests { padding-left: 22px; margin: 6px 0 10px; }
 .kt-types, .kt-brief { margin: 6px 0; }
@@ -1381,13 +1402,26 @@ footer {
   font-weight:600;
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.kt-btn-primary { background:#107a4f; color:#fff; border:1px solid #0e6b46; box-shadow: 0 6px 20px rgba(16,122,79,.25); }
-.kt-btn-primary:hover { background:#0e6b46; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(16,122,79,.35); }
+.kt-btn-primary {
+  background:#107a4f;
+  color:#fff;
+  border:1px solid #0e6b46;
+  box-shadow: 0 6px 20px rgba(16,122,79,.25);
+}
+@media (hover: hover) {
+  .kt-btn-primary:hover {
+    background:#0e6b46;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(16,122,79,.35);
+  }
+}
 .kt-btn-outline { color:#107a4f; border:1px solid #107a4f; background:#fff; }
-.kt-btn-outline:hover { background:#eaf6f1; transform: translateY(-2px); }
+@media (hover: hover) {
+  .kt-btn-outline:hover { background:#eaf6f1; transform: translateY(-2px); }
+}
 
 /* Small screen adjustments */
-@media (max-width: 520px){
+@media (max-width: 520px) {
   .kt-secondary-cta { align-items: center; text-align: center; }
   .kt-secondary-cta p { align-self: center; margin-bottom: 8px; }
 }
@@ -1395,39 +1429,80 @@ footer {
 /* Timeline */
 .kt-itinerary { margin-top: 18px; }
 .kt-itinerary h3 { font-size: 20px; margin: 0 0 14px; }
-.kt-timeline { position: relative; list-style: none; margin: 0; padding: 0 0 0 44px; }
+
+.kt-timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 44px;
+}
 .kt-timeline::before {
   content: "";
-  position: absolute; left: 20px; top: 0; bottom: 0; width: 4px;
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
   background: repeating-linear-gradient(to bottom,#ffd84d 0 10px, transparent 10px 20px);
   border-radius: 3px;
 }
 .kt-tl-item { position: relative; margin: 0 0 18px; }
 
-/* Icons */
+/* Icon (always on top) */
 .kt-tl-icon {
-  position: absolute; left: -2px; top: 2px;
-  width: 40px; height: 40px; display: grid; place-items: center;
-  font-size: 20px; background:#fff; border:1px solid #ffd84d; border-radius: 50%;
+  position: absolute;
+  left: -2px;
+  top: 2px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background:#fff;
+  border:1px solid #ffd84d;
+  border-radius: 50%;
   box-shadow: 0 6px 16px rgba(0,0,0,.08);
   z-index: 2;
   opacity: 1;
   transition: opacity .25s ease;
 }
-.kt-tl-item:hover .kt-tl-icon {
-  opacity: 0; /* fade out icon on hover (desktop only) */
-}
 
-/* Cards */
+/* Card */
 .kt-tl-card {
-  background:#ffffff; border:1px solid #ececec; border-radius:12px;
-  padding:12px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  background:#ffffff;
+  border:1px solid #ececec;
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
   transition: transform .25s ease, box-shadow .25s ease;
-  position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
 }
-.kt-tl-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,.10); }
 .kt-tl-card h2 { font-size: 18px; margin: 0 0 6px; }
 .kt-tl-card p { margin: 0; color:#333; }
+
+/* NOTE: Hover-specific behaviors are contained inside a hover-capable media query
+   so they are NOT applied on touch devices (iPhone Safari) which prevents
+   the "first-tap becomes hover and never un-hover" problem. */
+@media (hover: hover) {
+  /* Fade icon when the list item is hovered (desktop) */
+  .kt-tl-item:hover .kt-tl-icon {
+    opacity: 0;
+  }
+
+  /* Lift card slightly on hover (desktop) */
+  .kt-tl-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(0,0,0,.10);
+  }
+
+  /* Stagger animation delays (if animation path active) */
+  .kt-tl-item:nth-child(1){ animation-delay:.05s; }
+  .kt-tl-item:nth-child(2){ animation-delay:.12s; }
+  .kt-tl-item:nth-child(3){ animation-delay:.19s; }
+  .kt-tl-item:nth-child(4){ animation-delay:.26s; }
+  .kt-tl-item:nth-child(5){ animation-delay:.33s; }
+}
 
 /* Info strip */
 .kt-info { background:#fffdf7; border:1px solid #f1e6ca; border-radius:12px; padding:18px; margin:20px 0; }
@@ -1440,11 +1515,16 @@ footer {
 .kt-row { display:flex; flex-direction:column; }
 .kt-row label { font-size: 13px; color:#333; margin-bottom:4px; }
 .kt-row input, .kt-row textarea {
-  padding:10px 12px; border:1px solid #cfd7e6; border-radius:8px; font-size:14px;
+  padding:10px 12px;
+  border:1px solid #cfd7e6;
+  border-radius:8px;
+  font-size:14px;
   transition: box-shadow .2s ease, border-color .2s ease;
 }
 .kt-row input:focus, .kt-row textarea:focus {
-  outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12);
+  outline: none;
+  border-color:#107a4f;
+  box-shadow: 0 0 0 4px rgba(16,122,79,.12);
 }
 .kt-row textarea { resize: vertical; }
 .kt-form .kt-btn { grid-column: 1 / -1; justify-self: start; }
@@ -1470,21 +1550,21 @@ footer {
    Animations & Scroll-Reveal
    =============================== */
 
-/* Shared keyframe */
+/* Shared keyframes */
 @keyframes kt-fall-in {
   0%   { opacity:0; transform: translateY(-16px); }
   60%  { opacity:1; transform: translateY(2px); }
   100% { opacity:1; transform: translateY(0); }
 }
 
-/* Fallback (no scroll animations) */
+/* DEFAULT FALLBACK: show content immediately (prevents blanking on unsupported browsers) */
 .kt-reveal > *,
 .kt-timeline .kt-tl-item {
   opacity: 1;
   transform: none;
 }
 
-/* Chromium path */
+/* Chromium path (supports animation-timeline: view()) */
 @supports (animation-timeline: view()) {
   .kt-reveal > *,
   .kt-timeline .kt-tl-item {
@@ -1497,24 +1577,27 @@ footer {
   .kt-timeline .kt-tl-item { animation-range: entry 10% cover 25%; }
 }
 
-/* Safari path */
+/* Safari path (named view timelines) */
 @supports (view-timeline-name: --reveal) {
   .kt-reveal {
     view-timeline-name: --reveal;
     view-timeline-axis: block;
   }
   .kt-reveal > * {
-    opacity: 0; transform: translateY(-16px);
+    opacity: 0;
+    transform: translateY(-16px);
     animation: kt-fall-in .7s ease both;
     animation-timeline: --reveal;
     animation-range: entry 10% cover 30%;
   }
+
   .kt-timeline {
     view-timeline-name: --tl;
     view-timeline-axis: block;
   }
   .kt-timeline .kt-tl-item {
-    opacity: 0; transform: translateY(-16px);
+    opacity: 0;
+    transform: translateY(-16px);
     animation: kt-fall-in .7s ease both;
     animation-timeline: --tl;
     animation-range: entry 10% cover 25%;
@@ -1531,12 +1614,8 @@ footer {
     transform: none !important;
   }
 }
-.kt-timeline, .kt-tl-card {
-  min-height: 100px;
-  opacity: 1 !important;
-  transform: none !important;
-  display: block !important;
-}
+
+
 
 
 
