@@ -352,74 +352,102 @@
       io.observe(el);
     });
   })();
+    
     // form
-    (function () {
-  const form = document.getElementById('hire-form');
+/* EmailJS wiring for the kt-enquiry-form + calendar picker for Travel Dates
+   - Uses your existing EmailJS public key, service, and template IDs
+   - Appends a polite signature PLUS name/phone/dates/guests at the end of the message
+   - Keeps the given Subject as-is (readonly in the form)
+*/
+(function(){
+  const form = document.querySelector('.kt-enquiry-form');
   if (!form) return;
 
+  const statusEl = document.getElementById('form-status') || (() => {
+    const p = document.createElement('p');
+    p.id = 'form-status';
+    p.className = 'form-status';
+    p.setAttribute('role','status');
+    p.setAttribute('aria-live','polite');
+    form.appendChild(p);
+    return p;
+  })();
+
+  const nameEl    = document.getElementById('kt-name');
+  const emailEl   = document.getElementById('kt-email');   // user email
+  const phoneEl   = document.getElementById('kt-phone');
+  const datesEl   = document.getElementById('kt-dates');
+  const guestsEl  = document.getElementById('kt-guests');
+  const subjectEl = document.getElementById('kt-subject');
+  const messageEl = document.getElementById('kt-message');
+
+  // Ensure a hidden input exists for reply_to so EmailJS maps it correctly
+  let replyToHidden = form.querySelector('input[name="reply_to"]');
+  if (!replyToHidden) {
+    replyToHidden = document.createElement('input');
+    replyToHidden.type = 'hidden';
+    replyToHidden.name = 'reply_to';
+    form.appendChild(replyToHidden);
+  }
+
   // EmailJS config
-  const SDK_SRC   = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
-  const SERVICEID = "service_q8musfk";
-  const TEMPLATE  = "template_ns3st0v";
-  const USERKEY   = "MXg_OsDPiz_zR-o4F"; // public key
+  const EMAILJS_PUBLIC_KEY = "MXg_OsDPiz_zR-o4F";
+  const SERVICE_ID         = "service_q8musfk";
+  const TEMPLATE_ID        = "template_ns3st0v";
 
-  // Elements (match your form)
-  const statusEl  = document.getElementById('form-status');
-  const nameEl    = document.getElementById('name');      // name="from_name"
-  const emailEl   = document.getElementById('email');     // name="reply_to"
-  const subjectEl = document.getElementById('subject');   // name="subject"
-  const messageEl = document.getElementById('message');   // name="message"
-
-  function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
-
-  function initAndWire() {
-    try { emailjs.init(USERKEY); } catch (e) { console.warn("EmailJS init issue:", e); }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Validate basics
-      const rawSubject = (subjectEl?.value || "").trim();
-      const fromName   = (nameEl?.value || "").trim();
-      const fromEmail  = (emailEl?.value || "").trim();
-      if (!fromName || !fromEmail || !rawSubject) {
-        setStatus("Please complete name, email, and destination.");
-        return;
-      }
-
-      // Prefix subject as requested
-      subjectEl.value = `I want to travel ${rawSubject}`;
-
-      // Append polite signature to message (without duplicating)
-      const baseMsg = (messageEl?.value || "").trim();
-      messageEl.value = baseMsg
-        ? `${baseMsg}\n\nThank you,\n${fromName}`
-        : `Thank you,\n${fromName}`;
-
-      setStatus("Sending...");
-
-      try {
-        await emailjs.sendForm(SERVICEID, TEMPLATE, form);
-        setStatus("Sent! We will get back shortly.");
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        setStatus("Failed to send. Please try again.");
-      }
-    });
-  }
-
-  // Load SDK once
-  if (document.querySelector('script[src*="emailjs-com"]')) {
-    initAndWire();
-  } else {
+  const sdkSrc = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+  const ready = !!window.emailjs;
+  function init(){ try{ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }catch(e){} }
+  if (!ready) {
     const s = document.createElement('script');
-    s.src = SDK_SRC;
-    s.async = true;
-    s.onload = initAndWire;
-    s.onerror = () => console.error("Failed to load EmailJS SDK.");
-    document.head.appendChild(s);
-  }
+    s.src = sdkSrc; s.async = true; s.onload = init; document.head.appendChild(s);
+  } else { init(); }
+
+  // Optional date picker enhancement (native first)
+  try { const t=document.createElement('input'); t.type='date'; if (t.type==='date') { datesEl.type='date'; datesEl.placeholder='Select date'; } } catch(e){}
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    if (!window.emailjs) { statusEl.textContent = 'Initializing mailer... retry in a moment.'; return; }
+
+    // Validate basic fields
+    const userEmail = (emailEl && emailEl.value || '').trim();
+    const userName  = (nameEl && nameEl.value || '').trim();
+    if (!userName || !userEmail) { statusEl.textContent = 'Please add name and email.'; return; }
+
+    // 1) Set reply_to to the user's email so replies go to them
+    replyToHidden.value = userEmail;
+
+    // 2) Append the signature block into message
+    const phone   = (phoneEl && phoneEl.value || '').trim();
+    const dates   = (datesEl && datesEl.value || '').trim();
+    const guests  = (guestsEl && guestsEl.value || '').trim();
+    const baseMsg = (messageEl && messageEl.value || '').trim();
+
+    const appendix =
+`\n\nThank you
+${userName}
+Travel date: ${dates || '—'}
+Number of guest: ${guests || '—'}
+Phone number: ${phone || '—'}
+Email: ${userEmail}`;
+
+
+    if (messageEl) messageEl.value = baseMsg + appendix;
+
+    statusEl.textContent = 'Sending...';
+
+    try {
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form);
+      statusEl.textContent = 'Sent! We will get back shortly.';
+      form.reset();
+      // Restore readonly subject default after reset
+      if (subjectEl && subjectEl.defaultValue) subjectEl.value = subjectEl.defaultValue;
+    } catch(err){
+      console.error(err);
+      statusEl.textContent = 'Failed to send. Please try again.';
+    }
+  });
 })();
 
   (function(){

@@ -1426,7 +1426,15 @@ footer {
 .kt-row input:focus, .kt-row textarea:focus { outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12); }
 .kt-row textarea { resize: vertical; }
 .kt-form .kt-btn { grid-column: 1 / -1; justify-self: start; }
-
+.kt-enquiry-form button[type="submit"] {
+  display: block;
+  margin: 24px auto 0 auto;
+  text-align: center;
+}
+.form-status {
+  color: #111;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); /* Optional: subtle shadow */
+}
 /* Micro‑interactions */
 .kt-bounce { animation: bounceY 1.4s ease-in-out infinite; }
 @keyframes bounceY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
