@@ -1355,13 +1355,46 @@ footer {
 .kt-dests { padding-left: 22px; margin: 6px 0 10px; }
 .kt-types, .kt-brief { margin: 6px 0; }
 
-/* Buttons */
-.kt-cta, .kt-secondary-cta { display:flex; justify-content:center; margin:18px 0; }
-.kt-btn { display:inline-block; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+/* Buttons: fix alignment with the text line and prevent odd offsets */
+
+/* 1) Put the text and button on the same baseline */
+.kt-cta,
+.kt-secondary-cta{
+  display:flex;
+  justify-content:center;      /* keep centered horizontally */
+  align-items: baseline;       /* align to the text baseline */
+  gap: 12px;                   /* add a small gap between text and button */
+  flex-wrap: wrap;             /* allow wrap on small screens */
+}
+
+/* 2) Ensure the paragraph inside aligns to the same baseline */
+.kt-secondary-cta p{
+  margin: 0;                   /* remove extra offset from margins */
+  align-self: baseline;        /* lock to baseline even when wrapping */
+}
+
+/* 3) Nudge the outline button to sit on the same line-height */
+.kt-btn{
+  display:inline-flex;         /* makes vertical-align consistent inside */
+  align-items:center;          /* centers the label within the button */
+  line-height: 1;              /* remove extra inline gap */
+}
+
+/* Existing button styles (unchanged) */
+.kt-btn { padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
 .kt-btn-primary { background:#107a4f; color:#fff; border:1px solid #0e6b46; box-shadow: 0 6px 20px rgba(16,122,79,.25); }
 .kt-btn-primary:hover { background:#0e6b46; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(16,122,79,.35); }
 .kt-btn-outline { color:#107a4f; border:1px solid #107a4f; background:#fff; }
 .kt-btn-outline:hover { background:#eaf6f1; transform: translateY(-2px); }
+
+/* Optional: on very small screens, center stack neatly */
+@media (max-width: 520px){
+  .kt-secondary-cta{
+    align-items: center;       /* center when it wraps to two lines */
+    text-align: center;
+  }
+  .kt-secondary-cta p{ align-self: center; margin-bottom: 8px; }
+}
 
 /* Timeline */
 .kt-itinerary { margin-top: 18px; }
