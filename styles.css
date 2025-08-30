@@ -1334,7 +1334,8 @@ footer {
 }
 
 /* ===============================
-   Final CSS — hover-protected (Step 2)
+   Step 3 CSS — Safe for iPhone Safari
+   (forces visibility & prevents collapse)
    =============================== */
 
 /* Core layout & typography */
@@ -1426,29 +1427,51 @@ footer {
   .kt-secondary-cta p { align-self: center; margin-bottom: 8px; }
 }
 
-/* Timeline */
+/* Timeline base layout */
 .kt-itinerary { margin-top: 18px; }
 .kt-itinerary h3 { font-size: 20px; margin: 0 0 14px; }
 
+/* Ensure parent contains absolute children and won't collapse */
 .kt-timeline {
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0 0 0 44px;
+  /* Safety: ensure minimal presence so Safari doesn't collapse it */
+  min-height: 20px;
+  display: block;
+  overflow: visible;
+  -webkit-overflow-scrolling: touch;
 }
 .kt-timeline::before {
   content: "";
-  position: absolute;
-  left: 20px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
+  position: absolute; left: 20px; top: 0; bottom: 0; width: 4px;
   background: repeating-linear-gradient(to bottom,#ffd84d 0 10px, transparent 10px 20px);
   border-radius: 3px;
 }
-.kt-tl-item { position: relative; margin: 0 0 18px; }
 
-/* Icon (always on top) */
+/* Items + card */
+.kt-tl-item {
+  position: relative;
+  margin: 0 0 18px;
+  display: block;
+  /* provide a minimal height to avoid 0px collapse */
+  min-height: 48px;
+  -webkit-transform: translateZ(0); /* rendering hint for WebKit */
+}
+.kt-tl-card {
+  background:#ffffff;
+  border:1px solid #ececec;
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+/* Icon */
 .kt-tl-icon {
   position: absolute;
   left: -2px;
@@ -1462,84 +1485,44 @@ footer {
   border:1px solid #ffd84d;
   border-radius: 50%;
   box-shadow: 0 6px 16px rgba(0,0,0,.08);
-  z-index: 2;
+  z-index: 3;               /* ensure on top */
   opacity: 1;
   transition: opacity .25s ease;
 }
 
-/* Card */
-.kt-tl-card {
-  background:#ffffff;
-  border:1px solid #ececec;
-  border-radius:12px;
-  padding:12px 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
-  transition: transform .25s ease, box-shadow .25s ease;
-  position: relative;
-  z-index: 1;
-}
-.kt-tl-card h2 { font-size: 18px; margin: 0 0 6px; }
-.kt-tl-card p { margin: 0; color:#333; }
-
-/* NOTE: Hover-specific behaviors are contained inside a hover-capable media query
-   so they are NOT applied on touch devices (iPhone Safari) which prevents
-   the "first-tap becomes hover and never un-hover" problem. */
+/* Hide icon on hover only on hover-capable devices */
 @media (hover: hover) {
-  /* Fade icon when the list item is hovered (desktop) */
-  .kt-tl-item:hover .kt-tl-icon {
-    opacity: 0;
-  }
-
-  /* Lift card slightly on hover (desktop) */
-  .kt-tl-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 26px rgba(0,0,0,.10);
-  }
-
-  /* Stagger animation delays (if animation path active) */
-  .kt-tl-item:nth-child(1){ animation-delay:.05s; }
-  .kt-tl-item:nth-child(2){ animation-delay:.12s; }
-  .kt-tl-item:nth-child(3){ animation-delay:.19s; }
-  .kt-tl-item:nth-child(4){ animation-delay:.26s; }
-  .kt-tl-item:nth-child(5){ animation-delay:.33s; }
+  .kt-tl-item:hover .kt-tl-icon { opacity: 0; }
+  .kt-tl-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,.10); }
 }
 
-/* Info strip */
+/* Info strip, form, micro-interactions kept as before */
 .kt-info { background:#fffdf7; border:1px solid #f1e6ca; border-radius:12px; padding:18px; margin:20px 0; }
 .kt-info h3 { margin: 0 0 8px; }
 
-/* Form */
 .kt-form { background:#f7f9ff; border:1px solid #e0e7ff; border-radius:12px; padding:18px; margin-top: 20px; }
 .kt-form h3 { margin: 0 0 10px; }
 .kt-enquiry-form { display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; }
 .kt-row { display:flex; flex-direction:column; }
 .kt-row label { font-size: 13px; color:#333; margin-bottom:4px; }
 .kt-row input, .kt-row textarea {
-  padding:10px 12px;
-  border:1px solid #cfd7e6;
-  border-radius:8px;
-  font-size:14px;
+  padding:10px 12px; border:1px solid #cfd7e6; border-radius:8px; font-size:14px;
   transition: box-shadow .2s ease, border-color .2s ease;
 }
 .kt-row input:focus, .kt-row textarea:focus {
-  outline: none;
-  border-color:#107a4f;
-  box-shadow: 0 0 0 4px rgba(16,122,79,.12);
+  outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12);
 }
 .kt-row textarea { resize: vertical; }
 .kt-form .kt-btn { grid-column: 1 / -1; justify-self: start; }
 .kt-enquiry-form button[type="submit"] { display: block; margin: 24px auto 0 auto; text-align: center; }
 .form-status { color: #111; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 
-/* Micro-interactions */
 .kt-bounce { animation: bounceY 1.4s ease-in-out infinite; }
 @keyframes bounceY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
 
-/* Float-in for hero image */
 .kt-float-in { animation: floatIn .8s ease both; }
 @keyframes floatIn { from { opacity:0; transform: translateY(10px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
 
-/* Responsive */
 @media (max-width: 720px) {
   .kt-enquiry-form { grid-template-columns:1fr; }
   .kt-timeline { padding-left: 38px; }
@@ -1547,24 +1530,43 @@ footer {
 }
 
 /* ===============================
-   Animations & Scroll-Reveal
+   Animations & progressive enhancement
    =============================== */
 
-/* Shared keyframes */
+/* Shared single keyframe for supported scroll reveal */
 @keyframes kt-fall-in {
   0%   { opacity:0; transform: translateY(-16px); }
   60%  { opacity:1; transform: translateY(2px); }
   100% { opacity:1; transform: translateY(0); }
 }
 
-/* DEFAULT FALLBACK: show content immediately (prevents blanking on unsupported browsers) */
-.kt-reveal > *,
-.kt-timeline .kt-tl-item {
-  opacity: 1;
-  transform: none;
+/* DEFAULT SAFE FALLBACK for browsers that do NOT support animation-timeline:
+   force visible content and remove transforms (prevents blanking on iOS Safari). */
+@supports not (animation-timeline: view()) {
+  /* make sure reveal/timeline items are visible and not transformed */
+  .kt-reveal,
+  .kt-reveal > *,
+  .kt-timeline,
+  .kt-timeline .kt-tl-item,
+  .kt-itinerary,
+  .kt-tl-card {
+    opacity: 1 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    min-height: 1px !important;
+    visibility: visible !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  /* ensure the timeline line and icons are visible */
+  .kt-timeline::before { display: block !important; }
+  .kt-tl-icon { opacity: 1 !important; z-index: 3 !important; }
 }
 
-/* Chromium path (supports animation-timeline: view()) */
+/* CHROMIUM path: use scroll-driven animations where supported */
 @supports (animation-timeline: view()) {
   .kt-reveal > *,
   .kt-timeline .kt-tl-item {
@@ -1577,27 +1579,18 @@ footer {
   .kt-timeline .kt-tl-item { animation-range: entry 10% cover 25%; }
 }
 
-/* Safari path (named view timelines) */
+/* SAFARI (named view timelines) path */
 @supports (view-timeline-name: --reveal) {
-  .kt-reveal {
-    view-timeline-name: --reveal;
-    view-timeline-axis: block;
-  }
+  .kt-reveal { view-timeline-name: --reveal; view-timeline-axis: block; }
   .kt-reveal > * {
-    opacity: 0;
-    transform: translateY(-16px);
+    opacity: 0; transform: translateY(-16px);
     animation: kt-fall-in .7s ease both;
     animation-timeline: --reveal;
     animation-range: entry 10% cover 30%;
   }
-
-  .kt-timeline {
-    view-timeline-name: --tl;
-    view-timeline-axis: block;
-  }
+  .kt-timeline { view-timeline-name: --tl; view-timeline-axis: block; }
   .kt-timeline .kt-tl-item {
-    opacity: 0;
-    transform: translateY(-16px);
+    opacity: 0; transform: translateY(-16px);
     animation: kt-fall-in .7s ease both;
     animation-timeline: --tl;
     animation-range: entry 10% cover 25%;
@@ -1614,6 +1607,7 @@ footer {
     transform: none !important;
   }
 }
+
 
 
 
