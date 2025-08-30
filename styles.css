@@ -1333,7 +1333,10 @@ footer {
   text-align: center;
 }
 
-/* Packages details */
+/* ===============================
+   Packages details (Final CSS)
+   =============================== */
+
 /* Core layout & typography */
 .About {
   text-align: center;
@@ -1355,59 +1358,73 @@ footer {
 .kt-dests { padding-left: 22px; margin: 6px 0 10px; }
 .kt-types, .kt-brief { margin: 6px 0; }
 
-/* Buttons: fix alignment with the text line and prevent odd offsets */
-
-/* 1) Put the text and button on the same baseline */
+/* Buttons */
 .kt-cta,
-.kt-secondary-cta{
+.kt-secondary-cta {
   display:flex;
-  justify-content:center;      /* keep centered horizontally */
-  align-items: baseline;       /* align to the text baseline */
-  gap: 12px;                   /* add a small gap between text and button */
-  flex-wrap: wrap;             /* allow wrap on small screens */
+  justify-content:center;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-
-/* 2) Ensure the paragraph inside aligns to the same baseline */
-.kt-secondary-cta p{
-  margin: 0;                   /* remove extra offset from margins */
-  align-self: baseline;        /* lock to baseline even when wrapping */
+.kt-secondary-cta p {
+  margin: 0;
+  align-self: baseline;
 }
-
-/* 3) Nudge the outline button to sit on the same line-height */
-.kt-btn{
-  display:inline-flex;         /* makes vertical-align consistent inside */
-  align-items:center;          /* centers the label within the button */
-  line-height: 1;              /* remove extra inline gap */
+.kt-btn {
+  display:inline-flex;
+  align-items:center;
+  line-height: 1;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
-
-/* Existing button styles (unchanged) */
-.kt-btn { padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
 .kt-btn-primary { background:#107a4f; color:#fff; border:1px solid #0e6b46; box-shadow: 0 6px 20px rgba(16,122,79,.25); }
 .kt-btn-primary:hover { background:#0e6b46; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(16,122,79,.35); }
 .kt-btn-outline { color:#107a4f; border:1px solid #107a4f; background:#fff; }
 .kt-btn-outline:hover { background:#eaf6f1; transform: translateY(-2px); }
 
-/* Optional: on very small screens, center stack neatly */
+/* Small screen adjustments */
 @media (max-width: 520px){
-  .kt-secondary-cta{
-    align-items: center;       /* center when it wraps to two lines */
-    text-align: center;
-  }
-  .kt-secondary-cta p{ align-self: center; margin-bottom: 8px; }
+  .kt-secondary-cta { align-items: center; text-align: center; }
+  .kt-secondary-cta p { align-self: center; margin-bottom: 8px; }
 }
 
 /* Timeline */
 .kt-itinerary { margin-top: 18px; }
 .kt-itinerary h3 { font-size: 20px; margin: 0 0 14px; }
 .kt-timeline { position: relative; list-style: none; margin: 0; padding: 0 0 0 44px; }
-.kt-timeline::before { content: ""; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: repeating-linear-gradient(to bottom,#ffd84d 0 10px, transparent 10px 20px); border-radius: 3px; }
-.kt-tl-item { position: relative; margin: 0 0 18px; transform-origin: left; animation: tl-in .7s ease both; }
-.kt-tl-item:nth-child(1){animation-delay:.05s} .kt-tl-item:nth-child(2){animation-delay:.12s}
-.kt-tl-item:nth-child(3){animation-delay:.19s} .kt-tl-item:nth-child(4){animation-delay:.26s}
-.kt-tl-item:nth-child(5){animation-delay:.33s}
-@keyframes tl-in { from { opacity: 0; translate: -10px 6px; } to { opacity: 1; translate: 0 0; } }
-.kt-tl-icon { position: absolute; left: -2px; top: 2px; width: 40px; height: 40px; display: grid; place-items: center; font-size: 20px; background:#fff; border:1px solid #ffd84d; border-radius: 50%; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
-.kt-tl-card { background:#ffffff; border:1px solid #ececec; border-radius:12px; padding:12px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.06); transition: transform .25s ease, box-shadow .25s ease; }
+.kt-timeline::before {
+  content: "";
+  position: absolute; left: 20px; top: 0; bottom: 0; width: 4px;
+  background: repeating-linear-gradient(to bottom,#ffd84d 0 10px, transparent 10px 20px);
+  border-radius: 3px;
+}
+.kt-tl-item { position: relative; margin: 0 0 18px; }
+
+/* Icons */
+.kt-tl-icon {
+  position: absolute; left: -2px; top: 2px;
+  width: 40px; height: 40px; display: grid; place-items: center;
+  font-size: 20px; background:#fff; border:1px solid #ffd84d; border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  z-index: 2;
+  opacity: 1;
+  transition: opacity .25s ease;
+}
+.kt-tl-item:hover .kt-tl-icon {
+  opacity: 0; /* fade out icon on hover (desktop only) */
+}
+
+/* Cards */
+.kt-tl-card {
+  background:#ffffff; border:1px solid #ececec; border-radius:12px;
+  padding:12px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative; z-index: 1;
+}
 .kt-tl-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,.10); }
 .kt-tl-card h2 { font-size: 18px; margin: 0 0 6px; }
 .kt-tl-card p { margin: 0; color:#333; }
@@ -1422,119 +1439,23 @@ footer {
 .kt-enquiry-form { display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; }
 .kt-row { display:flex; flex-direction:column; }
 .kt-row label { font-size: 13px; color:#333; margin-bottom:4px; }
-.kt-row input, .kt-row textarea { padding:10px 12px; border:1px solid #cfd7e6; border-radius:8px; font-size:14px; transition: box-shadow .2s ease, border-color .2s ease; }
-.kt-row input:focus, .kt-row textarea:focus { outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12); }
+.kt-row input, .kt-row textarea {
+  padding:10px 12px; border:1px solid #cfd7e6; border-radius:8px; font-size:14px;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.kt-row input:focus, .kt-row textarea:focus {
+  outline: none; border-color:#107a4f; box-shadow: 0 0 0 4px rgba(16,122,79,.12);
+}
 .kt-row textarea { resize: vertical; }
 .kt-form .kt-btn { grid-column: 1 / -1; justify-self: start; }
-.kt-enquiry-form button[type="submit"] {
-  display: block;
-  margin: 24px auto 0 auto;
-  text-align: center;
-}
-.form-status {
-  color: #111;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06); /* Optional: subtle shadow */
-}
-/* Micro‑interactions */
+.kt-enquiry-form button[type="submit"] { display: block; margin: 24px auto 0 auto; text-align: center; }
+.form-status { color: #111; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+/* Micro-interactions */
 .kt-bounce { animation: bounceY 1.4s ease-in-out infinite; }
 @keyframes bounceY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-3px);} }
 
-/* Scroll‑reveal animations (CSS View Timelines; degrades gracefully) */
-/* Fall-from-above reveal (staggered) — extends scroll-reveal section */
-.kt-hidden { opacity: 0; transform: translateY(-16px); }
-
-@keyframes kt-fall-in {
-  0%   { opacity: 0; transform: translateY(-16px); }
-  60%  { opacity: 1; transform: translateY(2px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Use existing .kt-reveal as the trigger */
-.kt-reveal {
-  animation-name: kt-fall-in, reveal;
-  animation-duration: .7s, 1s;
-  animation-timing-function: ease, linear;
-  animation-fill-mode: both, both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 30%;
-}
-
-/* Stagger children inside reveal containers */
-.kt-reveal > * {
-  opacity: 0;
-  transform: translateY(-16px);
-  animation: kt-fall-in .7s ease both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 30%;
-}
-.kt-reveal > *:nth-child(1){ animation-delay:.05s }
-.kt-reveal > *:nth-child(2){ animation-delay:.12s }
-.kt-reveal > *:nth-child(3){ animation-delay:.19s }
-.kt-reveal > *:nth-child(4){ animation-delay:.26s }
-.kt-reveal > *:nth-child(5){ animation-delay:.33s }
-
-/* Timeline items fall in as they scroll into view */
-.kt-timeline .kt-tl-item {
-  opacity: 0;
-  transform: translateY(-16px);
-  animation: kt-fall-in .7s ease both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 25%;
-}
-.kt-timeline .kt-tl-item:nth-child(1){ animation-delay:.05s }
-.kt-timeline .kt-tl-item:nth-child(2){ animation-delay:.12s }
-.kt-timeline .kt-tl-item:nth-child(3){ animation-delay:.19s }
-.kt-timeline .kt-tl-item:nth-child(4){ animation-delay:.26s }
-.kt-timeline .kt-tl-item:nth-child(5){ animation-delay:.33s }
-
-/* Initial state shared by both paths */
-.kt-reveal > *, .kt-timeline .kt-tl-item {
-  opacity: 0;
-  transform: translateY(-16px);
-}
-
-/* Fall-from-above animation */
-@keyframes kt-fall-in {
-  0% { opacity:0; transform: translateY(-16px); }
-  60% { opacity:1; transform: translateY(2px); }
-  100% { opacity:1; transform: translateY(0); }
-}
-
-/* Progressive enhancement (will noop where unsupported) */
-.kt-reveal > * {
-  animation: kt-fall-in .7s ease both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 30%;
-}
-.kt-timeline .kt-tl-item {
-  animation: kt-fall-in .7s ease both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 25%;
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .kt-reveal > *, .kt-timeline .kt-tl-item {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .kt-reveal,
-  .kt-reveal > *,
-  .kt-timeline .kt-tl-item {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-
-/* Float‑in for hero image */
+/* Float-in for hero image */
 .kt-float-in { animation: floatIn .8s ease both; }
 @keyframes floatIn { from { opacity:0; transform: translateY(10px) scale(.98);} to { opacity:1; transform: translateY(0) scale(1);} }
 
@@ -1545,11 +1466,71 @@ footer {
   .kt-tl-icon { left: -6px; }
 }
 
+/* ===============================
+   Animations & Scroll-Reveal
+   =============================== */
 
+/* Shared keyframe */
+@keyframes kt-fall-in {
+  0%   { opacity:0; transform: translateY(-16px); }
+  60%  { opacity:1; transform: translateY(2px); }
+  100% { opacity:1; transform: translateY(0); }
+}
 
+/* Fallback (no scroll animations) */
+.kt-reveal > *,
+.kt-timeline .kt-tl-item {
+  opacity: 1;
+  transform: none;
+}
 
+/* Chromium path */
+@supports (animation-timeline: view()) {
+  .kt-reveal > *,
+  .kt-timeline .kt-tl-item {
+    opacity: 0;
+    transform: translateY(-16px);
+    animation: kt-fall-in .7s ease both;
+    animation-timeline: view();
+  }
+  .kt-reveal > * { animation-range: entry 10% cover 30%; }
+  .kt-timeline .kt-tl-item { animation-range: entry 10% cover 25%; }
+}
 
+/* Safari path */
+@supports (view-timeline-name: --reveal) {
+  .kt-reveal {
+    view-timeline-name: --reveal;
+    view-timeline-axis: block;
+  }
+  .kt-reveal > * {
+    opacity: 0; transform: translateY(-16px);
+    animation: kt-fall-in .7s ease both;
+    animation-timeline: --reveal;
+    animation-range: entry 10% cover 30%;
+  }
+  .kt-timeline {
+    view-timeline-name: --tl;
+    view-timeline-axis: block;
+  }
+  .kt-timeline .kt-tl-item {
+    opacity: 0; transform: translateY(-16px);
+    animation: kt-fall-in .7s ease both;
+    animation-timeline: --tl;
+    animation-range: entry 10% cover 25%;
+  }
+}
 
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .kt-reveal,
+  .kt-reveal > *,
+  .kt-timeline .kt-tl-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 
 
