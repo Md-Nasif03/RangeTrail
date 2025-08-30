@@ -1335,6 +1335,11 @@ footer {
 
 /* Packages details */
 /* Core layout & typography */
+.About {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .kt-main { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#1b1b1b; line-height:1.6; }
 .kt-container { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
 
