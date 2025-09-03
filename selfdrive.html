@@ -2,14 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brotherstravel – Self Drive Cars</title>
+  <!-- CHANGE: Keyword + location focused title -->
+  <title>Self‑Drive Car Rental in Guwahati — Daily & Weekly | Brothers Travel</title> <!-- [5][12] -->
+
+  <!-- CHANGE: Meta description for intent and CTR -->
+  <meta name="description" content="Self‑drive cars in Guwahati from Brothers Travel: hatchbacks, sedans, crossovers and 7‑seaters. Clean, sanitized fleet with simple pickup and fair daily rates." /> <!-- [5][8] -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Favicon using your logo.png -->
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="192x192">
-  <link rel="apple-touch-icon" href="Logo_white.png" sizes="180x180">
+
+  <!-- CHANGE: Canonical to consolidate signals -->
+  <link rel="canonical" href="https://www.brotherstravel.tour/selfdrive.html" /> <!-- [12] -->
+
+  <!-- CHANGE: Favicon set at stable root URLs so the logo can appear in Search -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
   <meta name="theme-color" content="#236a3b">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CHANGE: Structured data for LocalBusiness + OfferCatalog (self‑drive daily rates) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"LocalBusiness",
+        "@id":"https://www.brotherstravel.tour/#local",
+        "name":"Brothers Travel & Tourism",
+        "url":"https://www.brotherstravel.tour/",
+        "image":"https://www.brotherstravel.tour/Logo_white.png",
+        "telephone":"+91-6000649893",
+        "priceRange":"₹₹",
+        "address":{
+          "@type":"PostalAddress",
+          "streetAddress":"House No. 23, Room No. 4, Second Floor, SK Boruah Path, Bylane 2 East, FA Road, Sixmile, Panjabari",
+          "addressLocality":"Guwahati",
+          "postalCode":"781023",
+          "addressRegion":"Assam",
+          "addressCountry":"IN"
+        },
+        "areaServed":["Assam","Meghalaya"],
+        "openingHours":["Mo-Su 06:00-22:00"]
+      },
+      {
+        "@type":"OfferCatalog",
+        "name":"Self‑Drive Car Rental — Daily rates",
+        "itemListElement":[
+          {"@type":"Offer","name":"Dzire — Self‑drive","price":"1800","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+          {"@type":"Offer","name":"Amaze — Self‑drive","price":"2000","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+          {"@type":"Offer","name":"Swift — Self‑drive","price":"1600","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+          {"@type":"Offer","name":"Innova — Self‑drive","price":"3000","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+          {"@type":"Offer","name":"Innova Crysta — Self‑drive","price":"3800","priceCurrency":"INR","availability":"https://schema.org/InStock"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -48,8 +98,8 @@
 
   <main>
     <section class="page-hero">
-      <h1>Self-Drive Car Rentals</h1>
-      <p>Premium, sanitized vehicles. Drive with pride in every mile.</p>
+      <h1>Self‑Drive Car Rental in Guwahati</h1> <!-- [5] -->
+      <p>Premium, sanitized vehicles with simple pickup and transparent daily pricing.</p>
     </section>
 
     <section class="section-pad">

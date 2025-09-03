@@ -2,14 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brotherstravel – Car Rental</title>
+  <!-- CHANGE: Keyword-rich, location+service focused title -->
+  <title>Car Rental in Guwahati — Chauffeur & Self‑Drive | Brothers Travel</title> <!-- [2][4] -->
+
+  <!-- CHANGE: Add compelling meta description for CTR -->
+  <meta name="description" content="Rent cars in Guwahati with Brothers Travel: Innova Crysta, Swift Dzire, Force Traveller, Urbania, SUVs & sedans. Clean, sanitized fleet, local drivers, fair prices. WhatsApp to book." /> <!-- [2][5] -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Favicon using your logo.png -->
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="192x192">
-  <link rel="apple-touch-icon" href="Logo_white.png" sizes="180x180">
+
+  <!-- CHANGE: Canonical to avoid duplicate signals -->
+  <link rel="canonical" href="https://www.brotherstravel.tour/cars.html" /> <!-- [2] -->
+
+  <!-- CHANGE: Favicon set so Google shows logo (keep URLs stable at site root) -->
+  <link rel="icon" href="logo enhanced.png" sizes="32x32"> <!-- [11] -->
+  <link rel="icon" type="image/svg+xml" href="logo enhanced.png"> <!-- [11] -->
+  <link rel="apple-touch-icon" href="logo enhanced.png" sizes="180x180"> <!-- [11] -->
+
   <meta name="theme-color" content="#236a3b">
+
+  <!-- CHANGE: Preload hero/critical asset only if you have a hero image on this page -->
+  <!-- <link rel="preload" as="image" href="/images/cars-hero.jpg" fetchpriority="high"> --> <!-- [10] -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CHANGE: LocalBusiness AutoRental + service area + sample Vehicle offers (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"AutoRental",
+        "@id":"https://www.brotherstravel.tour/#local",
+        "name":"Brothers Travel & Tourism",
+        "url":"https://www.brotherstravel.tour/",
+        "image":"https://www.brotherstravel.tour/Logo_white.png",
+        "priceRange":"₹₹",
+        "telephone":"+91-6000649893",
+        "address":{
+          "@type":"PostalAddress",
+          "streetAddress":"House No. 23, Room No. 4, Second Floor, SK Boruah Path, Bylane 2 East, FA Road, Sixmile, Panjabari",
+          "addressLocality":"Guwahati",
+          "postalCode":"781023",
+          "addressRegion":"Assam",
+          "addressCountry":"IN"
+        },
+        "areaServed":["Assam","Meghalaya","Nagaland","Arunachal Pradesh","Manipur","Mizoram","Tripura","Sikkim","Bhutan"],
+        "openingHours":["Mo-Su 06:00-22:00"],
+        "sameAs":["https://wa.me/916000649893"]
+      },
+      {
+        "@type":"OfferCatalog",
+        "name":"Car rental fleet",
+        "itemListElement":[
+          {
+            "@type":"Offer",
+            "itemOffered":{
+              "@type":"Product",
+              "name":"Toyota Innova Crysta (7‑seater)",
+              "brand":"Toyota",
+              "category":"Car",
+              "additionalProperty":[
+                {"@type":"PropertyValue","name":"Fuel","value":"Diesel"},
+                {"@type":"PropertyValue","name":"Seats","value":"7"}
+              ]
+            },
+            "availability":"https://schema.org/InStock",
+            "priceCurrency":"INR"
+          },
+          {
+            "@type":"Offer",
+            "itemOffered":{
+              "@type":"Product",
+              "name":"Swift Dzire (sedan)",
+              "brand":"Maruti Suzuki",
+              "category":"Car",
+              "additionalProperty":[
+                {"@type":"PropertyValue","name":"Fuel","value":"Petrol"},
+                {"@type":"PropertyValue","name":"Seats","value":"4"}
+              ]
+            },
+            "availability":"https://schema.org/InStock",
+            "priceCurrency":"INR"
+          },
+          {
+            "@type":"Offer",
+            "itemOffered":{
+              "@type":"Product",
+              "name":"Force Traveller (12/17/26‑seater)",
+              "brand":"Force",
+              "category":"Minibus"
+            },
+            "availability":"https://schema.org/InStock",
+            "priceCurrency":"INR"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -47,9 +138,10 @@
   </header>
 
   <main>
+    <!-- CHANGE: H1 focused on query intent -->
     <section class="page-hero">
-      <h1>Our Fleet – Reliable, Sanitized Cars for Your Journey</h1>
-      <p>Choose from our well-maintained, comfortable vehicles. Safety and cleanliness guaranteed for every trip.</p>
+      <h1>Car Rental in Guwahati — Reliable, Sanitized Fleet</h1> <!-- [4][5] -->
+      <p>Book chauffeur‑driven or self‑drive vehicles for Assam & Meghalaya trips. Clean cars, trusted local drivers, and transparent pricing.</p>
     </section>
 
     <section class="section-pad">

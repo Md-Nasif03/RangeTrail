@@ -2,14 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brotherstravel – Home</title>
+  <!-- CHANGE: SEO title with primary keywords and location -->
+  <title>Brothers Travel & Tourism — Car Rental & Northeast India Tours in Guwahati</title> <!-- [12][13] -->
+
+  <!-- CHANGE: Meta description tailored to queries and CTR -->
+  <meta name="description" content="Local experts in Guwahati for chauffeur & self‑drive car rental and custom tour packages across Assam, Meghalaya, Nagaland, Arunachal, Sikkim & Bhutan. Clean fleet, transparent pricing. WhatsApp to book." /> <!-- [12] -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Favicon using your logo.png -->
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="192x192">
-  <link rel="apple-touch-icon" href="Logo_white.png" sizes="180x180">
+
+  <!-- CHANGE: Self‑referential canonical for dedupe -->
+  <link rel="canonical" href="https://www.brotherstravel.tour/" /> <!-- [7][9][11] -->
+
   <meta name="theme-color" content="#236a3b">
+
+  <!-- CHANGE: Absolute favicon URLs for consistency -->
+  <link rel="icon" href="https://www.brotherstravel.tour/Logo_white.png" type="image/png" sizes="32x32"> <!-- [12] -->
+  <link rel="icon" href="https://www.brotherstravel.tour/Logo_white.png" type="image/png" sizes="192x192"> <!-- [12] -->
+  <link rel="apple-touch-icon" href="https://www.brotherstravel.tour/Logo_white.png" sizes="180x180"> <!-- [12] -->
+
+  <!-- CHANGE: Preload hero to improve LCP -->
+  <link rel="preload" as="image" href="https://www.brotherstravel.tour/hero-northeast.jpg" imagesrcset="https://www.brotherstravel.tour/hero-northeast.jpg 1200w, https://www.brotherstravel.tour/hero-northeast-large.jpg 2000w" imagesizes="100vw" fetchpriority="high" /> <!-- [14] -->
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CHANGE: JSON-LD Organization + AutoRental LocalBusiness + WebSite SearchAction + sample TouristTrip -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.brotherstravel.tour/#org",
+        "name": "Brothers Travel",
+        "url": "https://www.brotherstravel.tour/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.brotherstravel.tour/Logo_white.png"
+        },
+        "description": "Guwahati-based tour operator and car rental offering custom Northeast India trips and self-drive/chauffeur cars.",
+        "sameAs": [
+          "https://www.facebook.com/share/1GdLbcNfEc/",
+          "https://www.instagram.com/brotherstravel_assam"
+        ],
+        "identifier": "License No: 1753006464902604",
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "telephone": "+91-9365961218",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi", "as"]
+        }]
+      },
+      {
+        "@type": "AutoRental",
+        "@id": "https://www.brotherstravel.tour/#local",
+        "name": "Brothers Travel & Tourism",
+        "url": "https://www.brotherstravel.tour/",
+        "image": "https://www.brotherstravel.tour/Logo_white.png",
+        "priceRange": "₹₹",
+        "telephone": "+91-6000649893",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "House No. 23, Room No. 4, Second Floor, SK Boruah Path, Bylane 2 East, FA Road, Sixmile, Panjabari",
+          "addressLocality": "Guwahati",
+          "postalCode": "781023",
+          "addressRegion": "Assam",
+          "addressCountry": "IN"
+        },
+        "areaServed": ["Assam","Meghalaya","Nagaland","Arunachal Pradesh","Manipur","Mizoram","Tripura","Sikkim","Bhutan"],
+        "geo": {"@type":"GeoCoordinates","latitude": 26.1445,"longitude": 91.7362},
+        "openingHours": ["Mo-Su 06:00-22:00"],
+        "sameAs": ["https://wa.me/916000649893"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.brotherstravel.tour/#website",
+        "url": "https://www.brotherstravel.tour/",
+        "name": "Brothers Travel",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.brotherstravel.tour/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "TouristTrip",
+        "@id": "https://www.brotherstravel.tour/#trip-kaziranga",
+        "name": "Kaziranga & Pobitora Wildlife Circuit",
+        "description": "5D/4N guided safari to Kaziranga National Park and Pobitora Sanctuary from Guwahati.",
+        "image": "https://www.brotherstravel.tour/images/Kaziranga.avif",
+        "itinerary": "Guwahati – Kaziranga – Pobitora – Guwahati",
+        "touristType": ["Family","Couple","Friends"],
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "On Request",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.brotherstravel.tour/package-kaziranga-pobitora.html"
+        },
+        "areaServed": ["Assam"]
+      }
+    ]
+  }
+  </script>
+  <!-- Favicon/logo for Google Search and browsers -->
+<link rel="icon" href="logo enhanced.png" sizes="32x32"> <!-- Legacy + Chrome prefers .ico if present -->
+<link rel="icon" type="image/svg+xml" href="logo enhanced.png"> <!-- Preferred: crisp, scalable brand mark -->
+<link rel="apple-touch-icon" href="logo enhanced.png"> <!-- 180x180 for iOS home screen -->
+<link rel="manifest" href="logo enhanced.png"> <!-- optional PWA; keeps icons consistent -->
+
 </head>
 <body>
   <!-- Header -->
@@ -50,8 +152,8 @@
     <!-- Hero with parallax -->
     <section class="hero-image">
       <div class="hero-text hero-text--responsive">
-        <h1>Discover The Northeast of India with Brother's travel</h1>
-        <p>Your trusted travel agency – Best packages, best cars, best price!</p>
+        <h1>Discover Northeast India Tours & Car Rental in Guwahati with Brother's travel</h1>
+        <p>Trusted local agency for <strong>custom trips</strong> and <strong>car rental</strong>—best packages, clean fleet, and transparent pricing.</p>
       </div>
     </section>
 

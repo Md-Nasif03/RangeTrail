@@ -2,14 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Brotherstravel – Self Drive Cars</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Favicon using your logo.png -->
-    <link rel="icon" href="Logo_white.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="Logo_white.png" type="image/png" sizes="192x192">
-    <link rel="apple-touch-icon" href="Logo_white.png" sizes="180x180">
-    <meta name="theme-color" content="#236a3b">
+  <!-- CHANGE: Keyword + intent focused title -->
+  <title>Northeast India Tour Packages from Guwahati | Brothers Travel</title> <!-- [3][1] -->
+
+  <!-- CHANGE: SEO description for category/listing page -->
+  <meta name="description" content="Browse handpicked tour packages across Assam, Meghalaya, Nagaland, Arunachal, Tripura, Manipur, Mizoram & Sikkim. Customizable itineraries with local experts in Guwahati." /> <!-- [2][5] -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- CHANGE: Canonical URL for this listing page -->
+  <link rel="canonical" href="https://www.brotherstravel.tour/packages.html" /> <!-- [5] -->
+
+  <!-- CHANGE: Favicon set at stable root paths so logo can show in SERP -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
+  <meta name="theme-color" content="#236a3b">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CHANGE: Structured data for a collection page + example TouristTrip items -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.brotherstravel.tour/packages.html",
+        "name": "Northeast India Tour Packages",
+        "description": "Curated tour packages across Assam, Meghalaya, Nagaland, Arunachal and more. Customizable itineraries from Guwahati.",
+        "url": "https://www.brotherstravel.tour/packages.html",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.brotherstravel.tour/"},
+            {"@type":"ListItem","position":2,"name":"Tour Packages","item":"https://www.brotherstravel.tour/packages.html"}
+          ]
+        }
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Kaziranga & Pobitora Wildlife Circuit",
+        "description": "5D/4N Assam safari covering Kaziranga National Park and Pobitora Sanctuary.",
+        "image": "https://www.brotherstravel.tour/images/Kaziranga.avif",
+        "offers": {"@type":"Offer","price":"On Request","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+        "url": "https://www.brotherstravel.tour/package-kaziranga-pobitora.html"
+      },
+      {
+        "@type": "TouristTrip",
+        "name": "Meghalaya Wonders: Shillong to Laitlum",
+        "description": "5D/4N Meghalaya trip covering Shillong, Cherrapunjee waterfalls, Dawki, Mawlynnong, Mawphlang & Laitlum.",
+        "image": "https://www.brotherstravel.tour/images/Dawki.jpg",
+        "offers": {"@type":"Offer","price":"On Request","priceCurrency":"INR","availability":"https://schema.org/InStock"},
+        "url": "https://www.brotherstravel.tour/package-meghalaya-wonders.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
     <!-- Header -->
@@ -48,10 +98,11 @@
 
     <main>
       <section class="section-pad">
-        <h1 class="section-title">All Tour Packages</h1>
-        <p class="section-tagline">
-          Curated routes across Assam, Meghalaya, Nagaland, Arunachal & beyond—customizable, comfort-first, and budget‑friendly.
-        </p>
+        <!-- CHANGE: H1 targets listing intent -->
+      <h1 class="section-title">Northeast India Tour Packages</h1> <!-- [2][4] -->
+      <p class="section-tagline">
+        Curated routes across Assam, Meghalaya, Nagaland, Arunachal & beyond—customizable, comfort‑first, and budget‑friendly.
+      </p>
   <!-- Vertical/grid list: NOT a slider -->
         <div class="packages-list">
           <!-- Kaziranga & Pobitora Wildlife Circuit -->

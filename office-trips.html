@@ -1,15 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Brotherstravel – Self Drive Cars</title>
+   <meta charset="UTF-8" />
+  <!-- CHANGE: Keyword + location focused title -->
+  <title>Corporate Car Rental in Guwahati — Airport Transfers, Local Duty, Out‑station | Brothers Travel</title> <!-- [1][3] -->
+
+  <!-- CHANGE: Meta description to match search intent -->
+  <meta name="description" content="Corporate and official trips in Guwahati: airport transfers, 8hr/80km local duty, and out‑station cars with vetted chauffeurs, GST invoices, and transparent billing." /> <!-- [1][4] -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Favicon using your logo.png -->
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="Logo_white.png" type="image/png" sizes="192x192">
-  <link rel="apple-touch-icon" href="Logo_white.png" sizes="180x180">
+
+  <!-- CHANGE: Canonical URL -->
+  <link rel="canonical" href="https://www.brotherstravel.tour/office-trips.html" /> <!-- [1] -->
+
+  <!-- CHANGE: Favicon set (stable root paths help logo show in SERP) -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32"> <!-- [1] -->
+  <link rel="icon" type="image/svg+xml" href="/icon.svg"> <!-- [1] -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"> <!-- [1] -->
+
   <meta name="theme-color" content="#236a3b">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CHANGE: Structured data — LocalBusiness + Service OfferCatalog for corporate trips -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"LocalBusiness",
+        "@id":"https://www.brotherstravel.tour/#local",
+        "name":"Brothers Travel & Tourism",
+        "url":"https://www.brotherstravel.tour/",
+        "image":"https://www.brotherstravel.tour/Logo_white.png",
+        "telephone":"+91-6000649893",
+        "priceRange":"₹₹",
+        "address":{
+          "@type":"PostalAddress",
+          "streetAddress":"House No. 23, Room No. 4, Second Floor, SK Boruah Path, Bylane 2 East, FA Road, Sixmile, Panjabari",
+          "addressLocality":"Guwahati",
+          "postalCode":"781023",
+          "addressRegion":"Assam",
+          "addressCountry":"IN"
+        },
+        "areaServed":["Assam","Meghalaya","Nagaland","Arunachal Pradesh"],
+        "openingHours":["Mo-Su 06:00-22:00"]
+      },
+      {
+        "@type":"Service",
+        "@id":"https://www.brotherstravel.tour/#corporate-trips",
+        "serviceType":"Corporate Car Rental & Official Trips",
+        "provider":{"@id":"https://www.brotherstravel.tour/#local"},
+        "areaServed":{"@type":"City","name":"Guwahati"},
+        "hasOfferCatalog":{
+          "@type":"OfferCatalog",
+          "name":"Corporate transport services",
+          "itemListElement":[
+            {
+              "@type":"Offer",
+              "name":"Airport transfer (with fuel)",
+              "priceCurrency":"INR",
+              "priceSpecification":{"@type":"PriceSpecification","price":"On Request","priceCurrency":"INR"},
+              "availability":"https://schema.org/InStock"
+            },
+            {
+              "@type":"Offer",
+              "name":"Local duty 8 hours / 80 km",
+              "priceCurrency":"INR",
+              "priceSpecification":{"@type":"PriceSpecification","price":"On Request","priceCurrency":"INR"},
+              "availability":"https://schema.org/InStock"
+            },
+            {
+              "@type":"Offer",
+              "name":"Out‑station (min 250 km / 12 hrs)",
+              "priceCurrency":"INR",
+              "priceSpecification":{"@type":"PriceSpecification","price":"On Request","priceCurrency":"INR"},
+              "availability":"https://schema.org/InStock"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -47,13 +121,13 @@
   </header>
 
 <main>
-  <!-- Title + Intro -->
-  <section class="page-hero">
-    <div class="container">
-      <h1 class="page-title">Official &amp; Corporate Trips</h1>
-      <p class="page-subtitle">End‑to‑end corporate transport for airport transfers, local duty (8h/80km), and out‑station schedules with vetted chauffeurs, clean vehicles, and transparent billing. GST @5% applies; parking/toll on actuals; meter starts/ends at office.</p>
-    </div>
-  </section>
+  <!-- CHANGE: H1 targets primary query -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="page-title">Corporate Car Rental in Guwahati</h1> <!-- [8][1] -->
+        <p class="page-subtitle">Airport transfers, 8h/80km local duty, and out‑station schedules with vetted chauffeurs, clean vehicles, GST invoices, and transparent billing. Parking/toll on actuals; meter starts/ends at office.</p>
+      </div>
+    </section>
 
   <!-- Services -->
   <section class="section section--highlights">
