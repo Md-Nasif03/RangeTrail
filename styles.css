@@ -642,13 +642,13 @@ footer {
     display: none;
   }
 
-  .brand-logo {
-    height: 52px;
+  /* .brand-logo {
+    height: 80px;
   }
 
   #siteHeader.scrolled .brand-logo {
     height: 44px;
-  }
+  } */
 
   .brand-text {
     font-size: 1.15rem;
